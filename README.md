@@ -9,8 +9,8 @@
 ![JavaScript](https://img.shields.io/badge/-JavaScript-yellow?logo=javascript&logoColor=white)
 ![Rust](https://img.shields.io/badge/-Rust-orange?logo=rust&logoColor=white)
 ![Windows](https://img.shields.io/badge/-Windows-blue?logo=windows&logoColor=white)
-![MacOS](https://img.shields.io/badge/-macOS-black?&logo=apple&logoColor=white)
-![Linux](https://img.shields.io/badge/-Linux-yellow?logo=linux&logoColor=white)
+![MacOS(规划中)](https://img.shields.io/badge/-macOS-black?&logo=apple&logoColor=white)
+![Linux(规划中)](https://img.shields.io/badge/-Linux-yellow?logo=linux&logoColor=white)
 
 <br/>
 <hr/>
