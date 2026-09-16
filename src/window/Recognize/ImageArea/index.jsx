@@ -7,6 +7,7 @@ import { useTranslation } from 'react-i18next';
 import { invoke } from '@tauri-apps/api';
 import { atom, useAtom } from 'jotai';
 
+import { silentModeAtom } from '..';
 import { useConfig } from '../../../hooks';
 
 export const base64Atom = atom('');
@@ -15,17 +16,29 @@ let unlisten = null;
 export default function ImageArea() {
     const [hideWindow] = useConfig('recognize_hide_window', false);
     const [base64, setBase64] = useAtom(base64Atom);
+    const [silent, setSilent] = useAtom(silentModeAtom);
     const imgRef = useRef();
     const { t } = useTranslation();
-    const load_img = () => {
-        invoke('get_base64').then((v) => {
-            setBase64(v);
-            if (hideWindow) {
-                appWindow.hide();
-            } else {
-                appWindow.show();
-                appWindow.setFocus(true);
-            }
+    const load_img = (payload = null) => {
+        // 事件携带 [SILENT] 表示静默识别；首次加载则查询后端模式标记
+        const modePromise =
+            payload === '[SILENT]'
+                ? Promise.resolve('silent')
+                : payload === ''
+                  ? Promise.resolve('')
+                  : invoke('get_recognize_mode');
+        modePromise.then((mode) => {
+            const isSilent = mode === 'silent';
+            setSilent(isSilent);
+            invoke('get_base64').then((v) => {
+                setBase64(v);
+                if (isSilent || hideWindow) {
+                    appWindow.hide();
+                } else {
+                    appWindow.show();
+                    appWindow.setFocus(true);
+                }
+            });
         });
     };
 
@@ -37,8 +50,8 @@ export default function ImageArea() {
                     f();
                 });
             }
-            unlisten = listen('new_image', (_) => {
-                load_img();
+            unlisten = listen('new_image', (event) => {
+                load_img(event.payload);
             });
         }
     }, [hideWindow]);

@@ -79,14 +79,14 @@
                 "app_font": "字型",
                 "app_fallback_font": "備用字型",
                 "font_size": {
-                    "title": "字型大小",
                     "10": "特小（10px）",
                     "12": "非常小（12px）",
                     "14": "小（14px）",
+                    "16": "標準（16px）",
                     "18": "大（18px）",
                     "20": "非常大（20px）",
                     "24": "特大（24px）",
-                    "16": "標準（16px）"
+                    "title": "字型大小"
                 },
                 "default_font": "預設",
                 "dev_mode": "開發者模式"
@@ -125,14 +125,14 @@
                 "yandex": "Yandex",
                 "local": "本地",
                 "font_size": {
+                    "10": "非常小（10px）",
+                    "12": "很小（12px）",
+                    "14": "小（14px）",
+                    "16": "標準（16px）",
                     "18": "大（18px）",
                     "20": "很大（20px）",
                     "24": "非常大（24px）",
-                    "16": "標準（16px）",
-                    "10": "非常小（10px）",
-                    "title": "字型大小",
-                    "12": "很小（12px）",
-                    "14": "小（14px）"
+                    "title": "字型大小"
                 }
             },
             "recognize": {
@@ -142,7 +142,9 @@
                 "delete_newline": "自動刪除換行",
                 "auto_copy": "自動複製",
                 "close_on_blur": "失去焦點時關閉視窗",
-                "hide_window": "隱藏辨識視窗"
+                "hide_window": "隱藏辨識視窗",
+                "silent_auto_copy": "靜默識別：自動複製識別結果",
+                "silent_notify": "靜默識別：發送通知"
             },
             "hotkey": {
                 "label": "快速鍵設定",
@@ -153,7 +155,11 @@
                 "ocr_translate": "截圖翻譯",
                 "is_register": "該快速鍵已被註冊",
                 "success": "快速鍵註冊成功",
-                "set_hotkey": "按下設定快速鍵"
+                "set_hotkey": "按下設定快速鍵",
+                "selection_replace": "劃詞翻譯並取代",
+                "selection_action_menu": "劃詞動作選單",
+                "ocr_silent_recognize": "靜默截圖識別",
+                "ocr_overlay_translate": "截圖譯文疊加"
             },
             "service": {
                 "label": "服務設定",
@@ -212,6 +218,19 @@
                 "qq_group": "QQ 群組",
                 "telegram": "Telegram",
                 "discussion": "Github 討論區"
+            },
+            "selection_assistant": {
+                "label": "劃詞助手",
+                "action_menu": "動作選單",
+                "action_menu_tip": "拖曳調整順序，開關控制是否在劃詞選單中顯示",
+                "disabled_actions": "已停用（點擊開關啟用）",
+                "search_url": "搜尋網址",
+                "search_url_tip": "%s 會被替換為選取的文字",
+                "need_pct_s": "網址必須包含 %s 佔位符",
+                "restore_clipboard": "取代後恢復剪貼簿內容",
+                "success_notify": "取代成功後發送通知",
+                "least_one": "至少保留一個動作",
+                "title": "劃詞助手"
             }
         },
         "updater": {
@@ -455,7 +474,10 @@
             "copy": "複製",
             "retry": "重試",
             "delete_newline": "刪除換行",
-            "translate_back": "翻譯回原文"
+            "translate_back": "翻譯回原文",
+            "replace": "取代原文",
+            "replace_success": "已取代原文",
+            "replace_failed": "取代失敗，請重試"
         },
         "recognize": {
             "recognize": "辨識",
@@ -464,6 +486,21 @@
             "copy_text": "複製",
             "delete_newline": "刪除換行",
             "delete_space": "刪除空格"
+        },
+        "action_menu": {
+            "translate": "翻譯",
+            "copy": "複製",
+            "search": "搜尋",
+            "replace": "取代",
+            "speak": "朗讀",
+            "lookup": "查詞",
+            "copied": "已複製到剪貼簿"
+        },
+        "overlay": {
+            "toggle_view": "切換譯文/原圖",
+            "copy_all": "複製全部譯文",
+            "close": "關閉",
+            "translate_failed": "翻譯失敗"
         }
     }
 }

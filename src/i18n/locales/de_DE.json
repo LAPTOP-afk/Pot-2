@@ -55,14 +55,14 @@
                 "app_font": "Schriftart",
                 "app_fallback_font": "Fallback-Schriftart",
                 "font_size": {
-                    "title": "Schriftgröße",
                     "10": "Sehr klein (10px)",
                     "12": "Extra klein (12px)",
                     "14": "Klein (14px)",
                     "16": "Standard (16px)",
                     "18": "Groß (18px)",
                     "20": "Extra groß (20px)",
-                    "24": "Sehr groß (24px)"
+                    "24": "Sehr groß (24px)",
+                    "title": "Schriftgröße"
                 },
                 "default_font": "Standard",
                 "theme": {
@@ -107,14 +107,14 @@
                 "delete_newline": "Automatisches Löschen von Zeilenumbrüchen",
                 "remember_language": "Zielsprache merken",
                 "font_size": {
-                    "title": "Schriftgröße",
                     "10": "Sehr klein (10px)",
                     "12": "Extra klein (12px)",
                     "14": "Klein (14px)",
                     "16": "Standard (16px)",
                     "18": "Groß (18px)",
                     "20": "Extra groß (20px)",
-                    "24": "Sehr groß (24px)"
+                    "24": "Sehr groß (24px)",
+                    "title": "Schriftgröße"
                 },
                 "window_position": "Fensterposition",
                 "mouse": "Der Maus folgen",
@@ -141,7 +141,9 @@
                 "delete_newline": "Automatisches Löschen von Zeilenumbrüchen",
                 "auto_copy": "Automatisch kopieren",
                 "close_on_blur": "Fenster beim Verlust des Fokus schließen",
-                "hide_window": "Erkennungsfenster ausblenden"
+                "hide_window": "Erkennungsfenster ausblenden",
+                "silent_auto_copy": "Lautlose OCR: Ergebnis automatisch kopieren",
+                "silent_notify": "Lautlose OCR: Benachrichtigung senden"
             },
             "hotkey": {
                 "label": "Hotkey",
@@ -152,7 +154,11 @@
                 "ocr_translate": "Bildschirmfoto-Übersetzung",
                 "is_register": "Die Tastenkombination ist bereits registriert",
                 "success": "Tastenkombination erfolgreich registriert",
-                "set_hotkey": "Drücken Sie zum Festlegen des Hotkeys"
+                "set_hotkey": "Drücken Sie zum Festlegen des Hotkeys",
+                "selection_replace": "Auswahl übersetzen und ersetzen",
+                "selection_action_menu": "Auswahl-Aktionsmenü",
+                "ocr_silent_recognize": "Lautlose Screenshot-OCR",
+                "ocr_overlay_translate": "Screenshot-Übersetzungs-Overlay"
             },
             "service": {
                 "label": "Dienst",
@@ -211,6 +217,19 @@
                 "qq_group": "QQ Gruppe",
                 "telegram": "Telegram",
                 "discussion": "Diskussion auf GitHub"
+            },
+            "selection_assistant": {
+                "label": "Auswahl-Assistent",
+                "action_menu": "Aktionsmenü",
+                "action_menu_tip": "Ziehen zum Sortieren; Schalter zum Ein-/Ausblenden im Menü",
+                "disabled_actions": "Deaktiviert (zum Aktivieren Schalter umlegen)",
+                "search_url": "Such-URL",
+                "search_url_tip": "%s wird durch den ausgewählten Text ersetzt",
+                "need_pct_s": "URL muss den Platzhalter %s enthalten",
+                "restore_clipboard": "Zwischenablage nach dem Ersetzen wiederherstellen",
+                "success_notify": "Nach erfolgreichem Ersetzen benachrichtigen",
+                "least_one": "Mindestens eine Aktion behalten",
+                "title": "Auswahl-Assistent"
             }
         },
         "updater": {
@@ -439,7 +458,10 @@
             "copy": "Kopieren",
             "retry": "Erneut versuchen",
             "delete_newline": "Zeilenumbruch löschen",
-            "translate_back": "In Ursprungssprache übersetzen"
+            "translate_back": "In Ursprungssprache übersetzen",
+            "replace": "Original ersetzen",
+            "replace_success": "Originaltext ersetzt",
+            "replace_failed": "Ersetzen fehlgeschlagen, bitte erneut versuchen"
         },
         "recognize": {
             "recognize": "Erneut erkennen",
@@ -448,6 +470,21 @@
             "copy_text": "Kopieren",
             "delete_newline": "Zeilenumbruch löschen",
             "delete_space": "Leerzeichen löschen"
+        },
+        "action_menu": {
+            "translate": "Übersetzen",
+            "copy": "Kopieren",
+            "search": "Suchen",
+            "replace": "Ersetzen",
+            "speak": "Vorlesen",
+            "lookup": "Wörterbuch",
+            "copied": "In die Zwischenablage kopiert"
+        },
+        "overlay": {
+            "toggle_view": "Übersetzung/Original umschalten",
+            "copy_all": "Alle Übersetzungen kopieren",
+            "close": "Schließen",
+            "translate_failed": "Übersetzung fehlgeschlagen"
         }
     }
 }

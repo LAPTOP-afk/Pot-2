@@ -1,5 +1,8 @@
 use crate::config::{get, set};
-use crate::window::{input_translate, ocr_recognize, ocr_translate, selection_translate};
+use crate::window::{
+    input_translate, ocr_overlay_translate, ocr_recognize, ocr_silent_recognize, ocr_translate,
+    selection_action_menu, selection_replace_translate, selection_translate,
+};
 use crate::APP;
 use log::{info, warn};
 use tauri::{AppHandle, GlobalShortcutManager};
@@ -52,8 +55,32 @@ pub fn register_shortcut(shortcut: &str) -> Result<(), String> {
         "hotkey_input_translate" => {
             register(app_handle, "hotkey_input_translate", input_translate, "")?
         }
+        "hotkey_selection_replace" => register(
+            app_handle,
+            "hotkey_selection_replace",
+            selection_replace_translate,
+            "",
+        )?,
+        "hotkey_selection_action_menu" => register(
+            app_handle,
+            "hotkey_selection_action_menu",
+            selection_action_menu,
+            "",
+        )?,
         "hotkey_ocr_recognize" => register(app_handle, "hotkey_ocr_recognize", ocr_recognize, "")?,
+        "hotkey_ocr_silent_recognize" => register(
+            app_handle,
+            "hotkey_ocr_silent_recognize",
+            ocr_silent_recognize,
+            "",
+        )?,
         "hotkey_ocr_translate" => register(app_handle, "hotkey_ocr_translate", ocr_translate, "")?,
+        "hotkey_ocr_overlay_translate" => register(
+            app_handle,
+            "hotkey_ocr_overlay_translate",
+            ocr_overlay_translate,
+            "",
+        )?,
         "all" => {
             register(
                 app_handle,
@@ -61,9 +88,33 @@ pub fn register_shortcut(shortcut: &str) -> Result<(), String> {
                 selection_translate,
                 "",
             )?;
+            register(
+                app_handle,
+                "hotkey_selection_replace",
+                selection_replace_translate,
+                "",
+            )?;
+            register(
+                app_handle,
+                "hotkey_selection_action_menu",
+                selection_action_menu,
+                "",
+            )?;
             register(app_handle, "hotkey_input_translate", input_translate, "")?;
             register(app_handle, "hotkey_ocr_recognize", ocr_recognize, "")?;
+            register(
+                app_handle,
+                "hotkey_ocr_silent_recognize",
+                ocr_silent_recognize,
+                "",
+            )?;
             register(app_handle, "hotkey_ocr_translate", ocr_translate, "")?;
+            register(
+                app_handle,
+                "hotkey_ocr_overlay_translate",
+                ocr_overlay_translate,
+                "",
+            )?;
         }
         _ => {}
     }
@@ -86,12 +137,36 @@ pub fn register_shortcut_by_frontend(name: &str, shortcut: &str) -> Result<(), S
             input_translate,
             shortcut,
         )?,
+        "hotkey_selection_replace" => register(
+            app_handle,
+            "hotkey_selection_replace",
+            selection_replace_translate,
+            shortcut,
+        )?,
+        "hotkey_selection_action_menu" => register(
+            app_handle,
+            "hotkey_selection_action_menu",
+            selection_action_menu,
+            shortcut,
+        )?,
         "hotkey_ocr_recognize" => {
             register(app_handle, "hotkey_ocr_recognize", ocr_recognize, shortcut)?
         }
+        "hotkey_ocr_silent_recognize" => register(
+            app_handle,
+            "hotkey_ocr_silent_recognize",
+            ocr_silent_recognize,
+            shortcut,
+        )?,
         "hotkey_ocr_translate" => {
             register(app_handle, "hotkey_ocr_translate", ocr_translate, shortcut)?
         }
+        "hotkey_ocr_overlay_translate" => register(
+            app_handle,
+            "hotkey_ocr_overlay_translate",
+            ocr_overlay_translate,
+            shortcut,
+        )?,
         _ => {}
     }
     Ok(())

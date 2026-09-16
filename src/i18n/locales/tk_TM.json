@@ -9,14 +9,14 @@
                     "light": "Ýagty"
                 },
                 "font_size": {
-                    "14": "Kiçi (14px)",
-                    "12": "Örän kiçi (12px)",
                     "10": "Goşmaça kiçi (10px)",
-                    "title": "Şrift ölçegi",
+                    "12": "Örän kiçi (12px)",
+                    "14": "Kiçi (14px)",
                     "16": "Standart (16px)",
                     "18": "Uly (18px)",
                     "20": "Örän uly (20px)",
-                    "24": "Goşmaça Uly (24px)"
+                    "24": "Goşmaça Uly (24px)",
+                    "title": "Şrift ölçegi"
                 },
                 "transparent": "Transparent Täsiri",
                 "proxy": {
@@ -38,6 +38,29 @@
                 "app_fallback_font": "Yza gaýdýan şrift",
                 "dev_mode": "Developer mody",
                 "server_port_change": "Serwer porty üýtgedildi, üýtgeşmeleriň güýje girmegi üçin programmany täzeden açyň"
+            },
+            "hotkey": {
+                "selection_replace": "Selection Translate & Replace",
+                "selection_action_menu": "Selection Action Menu",
+                "ocr_silent_recognize": "Silent Screenshot OCR",
+                "ocr_overlay_translate": "Screenshot Translation Overlay"
+            },
+            "selection_assistant": {
+                "label": "Selection Assistant",
+                "action_menu": "Action Menu",
+                "action_menu_tip": "Drag to reorder; use the switch to show or hide in the selection menu",
+                "disabled_actions": "Disabled (toggle to enable)",
+                "search_url": "Search URL",
+                "search_url_tip": "%s will be replaced with the selected text",
+                "need_pct_s": "URL must contain the %s placeholder",
+                "restore_clipboard": "Restore clipboard after replacing",
+                "success_notify": "Notify after successful replacement",
+                "least_one": "Keep at least one action",
+                "title": "Selection Assistant"
+            },
+            "recognize": {
+                "silent_auto_copy": "Silent OCR: auto copy result",
+                "silent_notify": "Silent OCR: send notification"
             }
         },
         "languages": {
@@ -81,6 +104,26 @@
             "plugin": "Plugin",
             "coming": "Tiz ýakynda…",
             "clear": "Arassala"
+        },
+        "action_menu": {
+            "translate": "Translate",
+            "copy": "Copy",
+            "search": "Search",
+            "replace": "Replace",
+            "speak": "Speak",
+            "lookup": "Lookup",
+            "copied": "Copied to clipboard"
+        },
+        "translate": {
+            "replace": "Replace Original",
+            "replace_success": "Original text replaced",
+            "replace_failed": "Replace failed, please try again"
+        },
+        "overlay": {
+            "toggle_view": "Toggle translation/original",
+            "copy_all": "Copy all translations",
+            "close": "Close",
+            "translate_failed": "Terjime edip bolmady"
         }
     }
 }

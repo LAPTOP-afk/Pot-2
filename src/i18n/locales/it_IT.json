@@ -245,14 +245,14 @@
                 "target": "Obbiettivo",
                 "title": "Impostazioni di traduzione",
                 "font_size": {
-                    "14": "Piccolo (14px)",
-                    "title": "Dimensione del font",
-                    "24": "Molto molto grande (24px)",
-                    "20": "Molto grande (20px)",
-                    "12": "Molto piccolo (12px)",
-                    "16": "Standard (16px)",
                     "10": "Molto molto piccolo (10px)",
-                    "18": "Grande (18px)"
+                    "12": "Molto piccolo (12px)",
+                    "14": "Piccolo (14px)",
+                    "16": "Standard (16px)",
+                    "18": "Grande (18px)",
+                    "20": "Molto grande (20px)",
+                    "24": "Molto molto grande (24px)",
+                    "title": "Dimensione del font"
                 },
                 "google": "Google",
                 "detect_engine": "Motore di rilevamento della lingua",
@@ -325,13 +325,13 @@
                 },
                 "server_port_change": "La porta di ascolto è stata modificata. Riavviare l'applicazione affinché le modifiche abbiano effetto",
                 "font_size": {
-                    "20": "Molto grande (20px)",
-                    "18": "Grande (18px)",
+                    "10": "Molto molto piccolo (10px)",
+                    "12": "Molto piccolo (12px)",
                     "14": "Piccolo (14px)",
                     "16": "Standard (16px)",
-                    "12": "Molto piccolo (12px)",
+                    "18": "Grande (18px)",
+                    "20": "Molto grande (20px)",
                     "24": "Molto molto grande (24px)",
-                    "10": "Molto molto piccolo (10px)",
                     "title": "Dimensione del font"
                 },
                 "app_font": "Font",
@@ -350,7 +350,9 @@
                 "title": "Impostazioni di riconoscimento",
                 "label": "Riconosci",
                 "hide_window": "Nascondi la finestra di riconoscimento",
-                "auto_copy": "Copia automaticamente"
+                "auto_copy": "Copia automaticamente",
+                "silent_auto_copy": "OCR silenzioso: copia automaticamente il risultato",
+                "silent_notify": "OCR silenzioso: invia notifica"
             },
             "hotkey": {
                 "ocr_translate": "Traduzione di schermate",
@@ -361,7 +363,11 @@
                 "title": "Impostazioni dei tasti di scelta rapida",
                 "set_hotkey": "Premere per impostare il tasto di scelta rapida",
                 "selection_translate": "Selezione traduzione",
-                "ocr_recognize": "Riconoscimento del testo"
+                "ocr_recognize": "Riconoscimento del testo",
+                "selection_replace": "Traduci e sostituisci la selezione",
+                "selection_action_menu": "Menu azioni selezione",
+                "ocr_silent_recognize": "OCR silenzioso dello screenshot",
+                "ocr_overlay_translate": "Sovrapposizione traduzione screenshot"
             },
             "service": {
                 "add_service": "Aggiungi servizio",
@@ -400,6 +406,19 @@
             "history": {
                 "label": "Cronologia",
                 "title": "Cronologia"
+            },
+            "selection_assistant": {
+                "label": "Assistente selezione",
+                "action_menu": "Menu azioni",
+                "action_menu_tip": "Trascina per riordinare; usa l'interruttore per mostrare o nascondere",
+                "disabled_actions": "Disattivato (attiva con l'interruttore)",
+                "search_url": "URL di ricerca",
+                "search_url_tip": "%s sarà sostituito con il testo selezionato",
+                "need_pct_s": "L'URL deve contenere il segnaposto %s",
+                "restore_clipboard": "Ripristina gli appunti dopo la sostituzione",
+                "success_notify": "Notifica dopo la sostituzione riuscita",
+                "least_one": "Mantieni almeno un’azione",
+                "title": "Assistente selezione"
             }
         },
         "translate": {
@@ -410,7 +429,10 @@
             "translate_back": "Traduzione riportata all'originale",
             "translate": "Traduci",
             "copy": "Copia",
-            "speak": "Parla"
+            "speak": "Parla",
+            "replace": "Sostituisci l'originale",
+            "replace_success": "Testo originale sostituito",
+            "replace_failed": "Sostituzione non riuscita, riprova"
         },
         "updater": {
             "installed": "Installazione completata, riavviare l'applicazione affinché le modifiche abbiano effetto",
@@ -428,6 +450,21 @@
             "copy_text": "Copia",
             "delete_space": "Elimina spazio",
             "copy_img": "Copia immagine"
+        },
+        "action_menu": {
+            "translate": "Traduci",
+            "copy": "Copia",
+            "search": "Cerca",
+            "replace": "Sostituisci",
+            "speak": "Ascolta",
+            "lookup": "Dizionario",
+            "copied": "Copiato negli appunti"
+        },
+        "overlay": {
+            "toggle_view": "Attiva/disattiva traduzione/originale",
+            "copy_all": "Copia tutte le traduzioni",
+            "close": "Chiudi",
+            "translate_failed": "Traduzione fallita"
         }
     }
 }

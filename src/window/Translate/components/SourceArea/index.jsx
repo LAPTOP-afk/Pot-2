@@ -13,6 +13,7 @@ import { HiTranslate } from 'react-icons/hi';
 import { LuDelete } from 'react-icons/lu';
 import { invoke } from '@tauri-apps/api';
 import { atom, useAtom } from 'jotai';
+import { setBlurSuppress } from '../../blur_guard';
 import { getServiceName, getServiceSouceType, ServiceSourceType } from '../../../../utils/service_instance';
 import { useConfig, useSyncAtom, useVoice, useToastStyle } from '../../../../hooks';
 import { invoke_plugin } from '../../../../utils/invoke_plugin';
@@ -25,6 +26,10 @@ import { debug } from 'tauri-plugin-log-api';
 
 export const sourceTextAtom = atom('');
 export const detectLanguageAtom = atom('');
+// 窗口类型：[SELECTION_TRANSLATE] 划词 | [INPUT_TRANSLATE] 输入 | [IMAGE_TRANSLATE] 截图 | [SELECTION_REPLACE] 划词静默替换
+export const windowTypeAtom = atom('[SELECTION_TRANSLATE]');
+// 静默"翻译并替换原文"模式：窗口保持隐藏，译文就绪后直接粘贴替换
+export const replaceModeAtom = atom(false);
 
 let unlisten = null;
 let timer = null;
@@ -43,7 +48,8 @@ export default function SourceArea(props) {
     const [hideWindow] = useConfig('translate_hide_window', false);
     const [hideSource] = useConfig('hide_source', false);
     const [ttsPluginInfo, setTtsPluginInfo] = useState();
-    const [windowType, setWindowType] = useState('[SELECTION_TRANSLATE]');
+    const [windowType, setWindowType] = useAtom(windowTypeAtom);
+    const [, setReplaceMode] = useAtom(replaceModeAtom);
     const toastStyle = useToastStyle();
     const { t } = useTranslation();
     const textAreaRef = useRef();
@@ -51,6 +57,28 @@ export default function SourceArea(props) {
 
     const handleNewText = async (text) => {
         text = text.trim();
+        // 静默划词替换：窗口保持隐藏，译文就绪后由 TargetArea 直接粘贴回原应用
+        if (text.startsWith('[SELECTION_REPLACE]')) {
+            setReplaceMode(true);
+            setWindowType('[SELECTION_REPLACE]');
+            // 静默替换：翻译期间窗口隐藏，屏蔽 blur 自动关闭防止销毁在途翻译
+            setBlurSuppress(true);
+            appWindow.hide();
+            setDetectLanguage('');
+            let rawText = text.replace('[SELECTION_REPLACE]', '').trim();
+            let newText = rawText;
+            if (deleteNewline) {
+                newText = rawText.replace(/\-\s+/g, '').replace(/\s+/g, ' ');
+            }
+            setSourceText(newText);
+            detect_language(newText).then(() => {
+                syncSourceText();
+            });
+            return;
+        }
+        // 非替换模式：复位静默标记与 blur 抑制
+        setReplaceMode(false);
+        setBlurSuppress(false);
         if (hideWindow) {
             appWindow.hide();
         } else {
@@ -219,8 +247,16 @@ export default function SourceArea(props) {
                 });
             }
             unlisten = listen('new_text', (event) => {
-                appWindow.setFocus();
-                handleNewText(event.payload);
+                // 静默替换模式下不要 setFocus，否则会把隐藏窗口带到前台
+                if (
+                    typeof event.payload === 'string' &&
+                    event.payload.startsWith('[SELECTION_REPLACE]')
+                ) {
+                    handleNewText(event.payload);
+                } else {
+                    appWindow.setFocus();
+                    handleNewText(event.payload);
+                }
             });
         }
     }, [hideWindow]);

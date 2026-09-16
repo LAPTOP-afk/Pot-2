@@ -56,12 +56,12 @@
                 "font_size": {
                     "10": "קטן במיוחד (10px)",
                     "12": "קטן מאוד (12px)",
+                    "14": "קטן (14px)",
                     "16": "רגיל (16px)",
+                    "18": "גדול (18px)",
                     "20": "גדול מאוד (20px)",
                     "24": "גדול במיוחד (24px)",
-                    "title": "גודל גופן",
-                    "18": "גדול (18px)",
-                    "14": "קטן (14px)"
+                    "title": "גודל גופן"
                 },
                 "default_font": "ברירת מחדל",
                 "transparent": "אפקט שקוף",
@@ -99,7 +99,11 @@
                 "ocr_recognize": "זהה טקסט",
                 "is_register": "מקש הקיצור כבר מוגדר",
                 "success": "הגדרת מקשי קיצור הצליח",
-                "set_hotkey": "לחץ כדי להגדיר מקיש קיצור"
+                "set_hotkey": "לחץ כדי להגדיר מקיש קיצור",
+                "selection_replace": "Selection Translate & Replace",
+                "selection_action_menu": "Selection Action Menu",
+                "ocr_silent_recognize": "Silent Screenshot OCR",
+                "ocr_overlay_translate": "Screenshot Translation Overlay"
             },
             "service": {
                 "view_plugin_list": "הצג רשימת תוספים",
@@ -134,14 +138,14 @@
                 "history_disable": "השבת היסטוריה",
                 "remember_language": "זכור את שפת היעד",
                 "font_size": {
-                    "title": "גודל גופן",
                     "10": "קטן מאוד מאוד (10px)",
                     "12": "קטן מאוד (12px)",
                     "14": "קטן (14px)",
                     "16": "רגיל (16px)",
                     "18": "גדול (18px)",
                     "20": "גדול מאוד (20px)",
-                    "24": "גדול מאוד מאוד (24px)"
+                    "24": "גדול מאוד מאוד (24px)",
+                    "title": "גודל גופן"
                 },
                 "dynamic_translate": "תרגום דינמי",
                 "mouse": "עקוב אחר העכבר",
@@ -200,11 +204,26 @@
                 "language": "שפת זיהוי",
                 "auto_copy": "העתקה אוטומטית",
                 "hide_window": "הסתר חלון זיהוי",
-                "close_on_blur": "סגור את החלון כאשר המיקוד אינו פעיל"
+                "close_on_blur": "סגור את החלון כאשר המיקוד אינו פעיל",
+                "silent_auto_copy": "Silent OCR: auto copy result",
+                "silent_notify": "Silent OCR: send notification"
             },
             "history": {
                 "label": "היסטוריה",
                 "title": "היסטוריה"
+            },
+            "selection_assistant": {
+                "label": "Selection Assistant",
+                "action_menu": "Action Menu",
+                "action_menu_tip": "Drag to reorder; use the switch to show or hide in the selection menu",
+                "disabled_actions": "Disabled (toggle to enable)",
+                "search_url": "Search URL",
+                "search_url_tip": "%s will be replaced with the selected text",
+                "need_pct_s": "URL must contain the %s placeholder",
+                "restore_clipboard": "Restore clipboard after replacing",
+                "success_notify": "Notify after successful replacement",
+                "least_one": "Keep at least one action",
+                "title": "Selection Assistant"
             }
         },
         "updater": {
@@ -405,13 +424,31 @@
             "recognizing": "מזהה…",
             "translate_back": "תרגום חזרה למקור",
             "copy": "העתק",
-            "retry": "נסה שוב"
+            "retry": "נסה שוב",
+            "replace": "Replace Original",
+            "replace_success": "Original text replaced",
+            "replace_failed": "Replace failed, please try again"
         },
         "recognize": {
             "translate": "תרגם",
             "copy_img": "העתק תמונה",
             "recognize": "זהה",
             "copy_text": "העתק"
+        },
+        "action_menu": {
+            "translate": "Translate",
+            "copy": "Copy",
+            "search": "Search",
+            "replace": "Replace",
+            "speak": "Speak",
+            "lookup": "Lookup",
+            "copied": "Copied to clipboard"
+        },
+        "overlay": {
+            "toggle_view": "Toggle translation/original",
+            "copy_all": "Copy all translations",
+            "close": "Close",
+            "translate_failed": "התרגום נכשל"
         }
     }
 }

@@ -1,16 +1,16 @@
 <img width="200px" src="public/icon.svg" align="left"/>
 
-# Pot2 
+# Pot2 (派了个萌的翻译器)
 
-> 🌈 一个跨平台的划词翻译软件
+> 🌈 一个跨平台的划词翻译软件 ([QQ 频道](https://pd.qq.com/s/akns94e1r))
 
 ![License](https://img.shields.io/github/license/pot-app/pot-desktop.svg)
 ![Tauri](https://img.shields.io/badge/Tauri-1.6.8-blue?logo=tauri)
 ![JavaScript](https://img.shields.io/badge/-JavaScript-yellow?logo=javascript&logoColor=white)
 ![Rust](https://img.shields.io/badge/-Rust-orange?logo=rust&logoColor=white)
 ![Windows](https://img.shields.io/badge/-Windows-blue?logo=windows&logoColor=white)
-![MacOS(规划中)](https://img.shields.io/badge/-macOS-black?&logo=apple&logoColor=white)
-![Linux(规划中)](https://img.shields.io/badge/-Linux-yellow?logo=linux&logoColor=white)
+![MacOS](https://img.shields.io/badge/-macOS-black?&logo=apple&logoColor=white)
+![Linux](https://img.shields.io/badge/-Linux-yellow?logo=linux&logoColor=white)
 
 <br/>
 <hr/>

@@ -18,6 +18,8 @@ export default function Recognize() {
     const [autoCopy, setAutoCopy] = useConfig('recognize_auto_copy', false);
     const [hideWindow, setHideWindow] = useConfig('recognize_hide_window', false);
     const [closeOnBlur, setCloseOnBlur] = useConfig('recognize_close_on_blur', false);
+    const [silentAutoCopy, setSilentAutoCopy] = useConfig('silent_ocr_auto_copy', true);
+    const [silentNotify, setSilentNotify] = useConfig('silent_ocr_notify', true);
     const { t } = useTranslation();
     return (
         <Card className='mb-[10px]'>
@@ -84,6 +86,28 @@ export default function Recognize() {
                             isSelected={hideWindow}
                             onValueChange={(v) => {
                                 setHideWindow(v);
+                            }}
+                        />
+                    )}
+                </div>
+                <div className='config-item'>
+                    <h3 className='my-auto mx-0'>{t('config.recognize.silent_auto_copy')}</h3>
+                    {silentAutoCopy !== null && (
+                        <Switch
+                            isSelected={silentAutoCopy}
+                            onValueChange={(v) => {
+                                setSilentAutoCopy(v);
+                            }}
+                        />
+                    )}
+                </div>
+                <div className='config-item'>
+                    <h3 className='my-auto mx-0'>{t('config.recognize.silent_notify')}</h3>
+                    {silentNotify !== null && (
+                        <Switch
+                            isSelected={silentNotify}
+                            onValueChange={(v) => {
+                                setSilentNotify(v);
                             }}
                         />
                     )}

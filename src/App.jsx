@@ -8,6 +8,8 @@ import { useTheme } from 'next-themes';
 import { invoke } from '@tauri-apps/api/tauri';
 import Screenshot from './window/Screenshot';
 import Translate from './window/Translate';
+import ActionMenu from './window/ActionMenu';
+import Overlay from './window/Overlay';
 import Recognize from './window/Recognize';
 import Updater from './window/Updater';
 import { store } from './utils/store';
@@ -18,6 +20,8 @@ import './i18n';
 
 const windowMap = {
     translate: <Translate />,
+    action_menu: <ActionMenu />,
+    overlay: <Overlay />,
     screenshot: <Screenshot />,
     recognize: <Recognize />,
     config: <Config />,

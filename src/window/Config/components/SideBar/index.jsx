@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { PiTextboxFill } from 'react-icons/pi';
 import { MdKeyboardAlt } from 'react-icons/md';
 import { MdExtension } from 'react-icons/md';
+import { MdTouchApp } from 'react-icons/md';
 import { AiFillCloud } from 'react-icons/ai';
 import { FaHistory } from 'react-icons/fa';
 import { Button } from '@nextui-org/react';
@@ -57,6 +58,18 @@ export default function SideBar() {
                 startContent={<PiTextboxFill className='text-[24px]' />}
             >
                 <div className='w-full'>{t('config.recognize.label')}</div>
+            </Button>
+            <Button
+                fullWidth
+                size='lg'
+                variant={setStyle('/selection_assistant')}
+                className='mb-[5px]'
+                onPress={() => {
+                    navigate('/selection_assistant');
+                }}
+                startContent={<MdTouchApp className='text-[24px]' />}
+            >
+                <div className='w-full'>{t('config.selection_assistant.label')}</div>
             </Button>
             <Button
                 fullWidth

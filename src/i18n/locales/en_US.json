@@ -55,14 +55,14 @@
                 "app_font": "Font",
                 "app_fallback_font": "Fallback Font",
                 "font_size": {
-                    "title": "Font Size",
                     "10": "Extra Small (10px)",
                     "12": "Very Small (12px)",
                     "14": "Small (14px)",
                     "16": "Standard (16px)",
                     "18": "Large (18px)",
                     "20": "Very Large (20px)",
-                    "24": "Extra Large (24px)"
+                    "24": "Extra Large (24px)",
+                    "title": "Font Size"
                 },
                 "default_font": "Default",
                 "theme": {
@@ -108,14 +108,14 @@
                 "delete_newline": "Delete Newline",
                 "remember_language": "Remember Target Language",
                 "font_size": {
-                    "title": "Font Size",
                     "10": "Very Very Small (10px)",
                     "12": "Very Small (12px)",
                     "14": "Small (14px)",
                     "16": "Standard (16px)",
                     "18": "Large (18px)",
                     "20": "Very Large (20px)",
-                    "24": "Very Very Large (24px)"
+                    "24": "Very Very Large (24px)",
+                    "title": "Font Size"
                 },
                 "window_position": "Window Position",
                 "mouse": "Follow the Mouse",
@@ -142,7 +142,9 @@
                 "delete_newline": "Auto Delete Newline",
                 "auto_copy": "Auto Copy",
                 "close_on_blur": "Close window when focus lost",
-                "hide_window": "Hide Recognition Window"
+                "hide_window": "Hide Recognition Window",
+                "silent_auto_copy": "Silent OCR: auto copy result",
+                "silent_notify": "Silent OCR: send notification"
             },
             "hotkey": {
                 "label": "Hotkey",
@@ -153,7 +155,11 @@
                 "ocr_translate": "Screenshot Translation",
                 "is_register": "The hotkey is already registered",
                 "success": "Hotkey register success",
-                "set_hotkey": "Press to Set Hotkey"
+                "set_hotkey": "Press to Set Hotkey",
+                "selection_replace": "Selection Translate & Replace",
+                "selection_action_menu": "Selection Action Menu",
+                "ocr_silent_recognize": "Silent Screenshot OCR",
+                "ocr_overlay_translate": "Screenshot Translation Overlay"
             },
             "service": {
                 "label": "Service",
@@ -212,6 +218,19 @@
                 "qq_group": "QQ Group",
                 "telegram": "Telegram",
                 "discussion": "Github Discussion"
+            },
+            "selection_assistant": {
+                "label": "Selection Assistant",
+                "action_menu": "Action Menu",
+                "action_menu_tip": "Drag to reorder; use the switch to show or hide in the selection menu",
+                "disabled_actions": "Disabled (toggle to enable)",
+                "search_url": "Search URL",
+                "search_url_tip": "%s will be replaced with the selected text",
+                "need_pct_s": "URL must contain the %s placeholder",
+                "restore_clipboard": "Restore clipboard after replacing",
+                "success_notify": "Notify after successful replacement",
+                "least_one": "Keep at least one action",
+                "title": "Selection Assistant"
             }
         },
         "updater": {
@@ -458,7 +477,10 @@
             "copy": "Copy",
             "retry": "Try again",
             "delete_newline": "Delete Newline",
-            "translate_back": "Translation back to the original"
+            "translate_back": "Translation back to the original",
+            "replace": "Replace Original",
+            "replace_success": "Original text replaced",
+            "replace_failed": "Replace failed, please try again"
         },
         "recognize": {
             "recognize": "Recognize",
@@ -467,6 +489,21 @@
             "copy_text": "Copy",
             "delete_newline": "Delete Newline",
             "delete_space": "Delete Space"
+        },
+        "action_menu": {
+            "translate": "Translate",
+            "copy": "Copy",
+            "search": "Search",
+            "replace": "Replace",
+            "speak": "Speak",
+            "lookup": "Lookup",
+            "copied": "Copied to clipboard"
+        },
+        "overlay": {
+            "toggle_view": "Toggle translation/original",
+            "copy_all": "Copy all translations",
+            "close": "Close",
+            "translate_failed": "Translation failed"
         }
     }
 }

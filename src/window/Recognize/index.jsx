@@ -4,6 +4,7 @@ import { convertFileSrc } from '@tauri-apps/api/tauri';
 import { appWindow } from '@tauri-apps/api/window';
 import React, { useState, useEffect } from 'react';
 import { listen } from '@tauri-apps/api/event';
+import { invoke } from '@tauri-apps/api';
 import { Button } from '@nextui-org/react';
 import { BsPinFill } from 'react-icons/bs';
 import { atom, useAtom } from 'jotai';
@@ -17,6 +18,8 @@ import ImageArea from './ImageArea';
 import TextArea from './TextArea';
 
 export const pluginListAtom = atom();
+// 本次识别是否为静默模式（隐藏窗口、后台识别、复制/通知后自动关闭）
+export const silentModeAtom = atom(false);
 
 let blurTimeout = null;
 
@@ -52,6 +55,7 @@ void listen('tauri://focus', () => {
 
 export default function Recognize() {
     const [pluginList, setPluginList] = useAtom(pluginListAtom);
+    const [, setSilentMode] = useAtom(silentModeAtom);
     const [closeOnBlur] = useConfig('recognize_close_on_blur', false);
     const [pined, setPined] = useState(false);
     const [serviceInstanceList] = useConfig('recognize_service_list', ['system', 'tesseract']);
@@ -94,6 +98,16 @@ export default function Recognize() {
 
     useEffect(() => {
         loadPluginList();
+    }, []);
+
+    // 静默识别：窗口全程隐藏，关闭 blur 自动关闭逻辑，避免隐藏即被销毁
+    useEffect(() => {
+        invoke('get_recognize_mode').then((mode) => {
+            if (mode === 'silent') {
+                setSilentMode(true);
+                unlistenBlur();
+            }
+        });
     }, []);
     // 是否自动关闭窗口
     useEffect(() => {

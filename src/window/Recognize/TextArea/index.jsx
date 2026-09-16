@@ -1,6 +1,8 @@
 import { Card, CardBody, CardFooter, Button, Skeleton, ButtonGroup, Tooltip } from '@nextui-org/react';
 import { sendNotification } from '@tauri-apps/api/notification';
 import { writeText } from '@tauri-apps/api/clipboard';
+import { appWindow } from '@tauri-apps/api/window';
+import { invoke } from '@tauri-apps/api';
 import { atom, useAtom, useAtomValue } from 'jotai';
 import React, { useEffect, useState } from 'react';
 import { CgSpaceBetween } from 'react-icons/cg';
@@ -15,7 +17,7 @@ import { invoke_plugin } from '../../../utils/invoke_plugin';
 import * as builtinServices from '../../../services/recognize';
 import { useConfig } from '../../../hooks';
 import { base64Atom } from '../ImageArea';
-import { pluginListAtom } from '..';
+import { silentModeAtom, pluginListAtom } from '..';
 
 export const textAtom = atom();
 let recognizeId = 0;
@@ -25,6 +27,8 @@ export default function TextArea(props) {
     const [autoCopy] = useConfig('recognize_auto_copy', false);
     const [deleteNewline] = useConfig('recognize_delete_newline', false);
     const [hideWindow] = useConfig('recognize_hide_window', false);
+    const [silentAutoCopy] = useConfig('silent_ocr_auto_copy', true);
+    const [silentNotify] = useConfig('silent_ocr_notify', true);
     const recognizeFlag = useAtomValue(recognizeFlagAtom);
     const currentServiceInstanceKey = useAtomValue(currentServiceInstanceKeyAtom);
     const language = useAtomValue(languageAtom);
@@ -33,7 +37,35 @@ export default function TextArea(props) {
     const [text, setText] = useAtom(textAtom);
     const [error, setError] = useState('');
     const pluginList = useAtomValue(pluginListAtom);
+    const [silent, setSilent] = useAtom(silentModeAtom);
     const { t } = useTranslation();
+
+    // 静默识别成功：按配置复制/通知，然后清除模式并关闭隐藏窗口
+    const handleSilentSuccess = async (v) => {
+        if (silentAutoCopy) {
+            await writeText(v);
+        }
+        if (silentNotify) {
+            sendNotification({
+                title: silentAutoCopy ? t('common.write_clipboard') : 'Pot2',
+                body: v,
+            });
+        }
+        await invoke('set_recognize_mode', { mode: '' });
+        setTimeout(() => {
+            appWindow.close();
+        }, 200);
+    };
+
+    // 静默识别失败：回退为正常窗口展示错误，避免无反馈
+    const handleSilentError = async (e) => {
+        await invoke('set_recognize_mode', { mode: '' });
+        setSilent(false);
+        setError(e.toString());
+        setLoading(false);
+        appWindow.show();
+        appWindow.setFocus(true);
+    };
 
     useEffect(() => {
         setText('');
@@ -43,7 +75,9 @@ export default function TextArea(props) {
             currentServiceInstanceKey &&
             autoCopy !== null &&
             deleteNewline !== null &&
-            hideWindow !== null
+            hideWindow !== null &&
+            silentAutoCopy !== null &&
+            silentNotify !== null
         ) {
             setLoading(true);
             if (getServiceSouceType(currentServiceInstanceKey) === ServiceSourceType.PLUGIN) {
@@ -65,6 +99,10 @@ export default function TextArea(props) {
                                 }
                                 setText(v);
                                 setLoading(false);
+                                if (silent) {
+                                    void handleSilentSuccess(v);
+                                    return;
+                                }
                                 if (autoCopy) {
                                     writeText(v).then(() => {
                                         if (hideWindow) {
@@ -78,11 +116,26 @@ export default function TextArea(props) {
                             },
                             (e) => {
                                 if (recognizeId !== id) return;
+                                if (silent) {
+                                    void handleSilentError(e);
+                                    return;
+                                }
                                 setError(e.toString());
                                 setLoading(false);
                             }
                         );
+                    }).catch((e) => {
+                        // 插件加载/执行入口失败（main.js 缺失等）：静默模式必须复位并回退显示
+                        if (recognizeId !== id) return;
+                        if (silent) {
+                            void handleSilentError(e);
+                            return;
+                        }
+                        setError(e.toString());
+                        setLoading(false);
                     });
+                } else if (silent) {
+                    void handleSilentError(new Error('Language not supported'));
                 }
             } else {
                 const instanceConfig = serviceInstanceConfigMap[currentServiceInstanceKey] ?? {};
@@ -106,6 +159,10 @@ export default function TextArea(props) {
                                 }
                                 setText(v);
                                 setLoading(false);
+                                if (silent) {
+                                    void handleSilentSuccess(v);
+                                    return;
+                                }
                                 if (autoCopy) {
                                     writeText(v).then(() => {
                                         if (hideWindow) {
@@ -119,17 +176,36 @@ export default function TextArea(props) {
                             },
                             (e) => {
                                 if (recognizeId !== id) return;
+                                if (silent) {
+                                    void handleSilentError(e);
+                                    return;
+                                }
                                 setError(e.toString());
                                 setLoading(false);
                             }
                         );
                 } else {
-                    setError('Language not supported');
-                    setLoading(false);
+                    if (silent) {
+                        void handleSilentError(new Error('Language not supported'));
+                    } else {
+                        setError('Language not supported');
+                        setLoading(false);
+                    }
                 }
             }
         }
-    }, [base64, currentServiceInstanceKey, language, recognizeFlag, autoCopy, deleteNewline, hideWindow]);
+    }, [
+        base64,
+        currentServiceInstanceKey,
+        language,
+        recognizeFlag,
+        autoCopy,
+        deleteNewline,
+        hideWindow,
+        silent,
+        silentAutoCopy,
+        silentNotify,
+    ]);
 
     return (
         <Card

@@ -298,13 +298,13 @@
                 },
                 "server_port_change": "A porta de escuta foi alterada. Reinicie a aplicação para que as alterações tenham efeito",
                 "font_size": {
-                    "20": "Muito Grande (20px)",
-                    "18": "Grande (18px)",
+                    "10": "Extra pequeno (10px)",
+                    "12": "Muito Pequena (12px)",
                     "14": "Pequena (14px)",
                     "16": "Padrão (16px)",
-                    "12": "Muito Pequena (12px)",
+                    "18": "Grande (18px)",
+                    "20": "Muito Grande (20px)",
                     "24": "Extragrande (24px)",
-                    "10": "Extra pequeno (10px)",
                     "title": "Tamanho da Fonte"
                 },
                 "app_font": "Fonte",
@@ -323,14 +323,14 @@
                 "target": "Destino",
                 "title": "Configurações de Tradução",
                 "font_size": {
-                    "14": "Pequena (14px)",
-                    "title": "Tamanho da Fonte",
-                    "24": "Muito, Muito Grande (24px)",
-                    "20": "Muito Grande (20px)",
-                    "12": "Muito Pequena (12px)",
-                    "16": "Padrão (16px)",
                     "10": "Muito, Muito Pequena (10px)",
-                    "18": "Grande (18px)"
+                    "12": "Muito Pequena (12px)",
+                    "14": "Pequena (14px)",
+                    "16": "Padrão (16px)",
+                    "18": "Grande (18px)",
+                    "20": "Muito Grande (20px)",
+                    "24": "Muito, Muito Grande (24px)",
+                    "title": "Tamanho da Fonte"
                 },
                 "google": "Google",
                 "detect_engine": "Mecanismo de Detecção de Idioma",
@@ -388,7 +388,9 @@
                 "title": "Configurações de Reconhecimento",
                 "label": "Reconhecimento",
                 "hide_window": "Ocultar Janela de Reconhecimento",
-                "auto_copy": "Copiar Automaticamente"
+                "auto_copy": "Copiar Automaticamente",
+                "silent_auto_copy": "OCR silencioso: copiar resultado automaticamente",
+                "silent_notify": "OCR silencioso: enviar notificação"
             },
             "hotkey": {
                 "ocr_translate": "Tradução de Imagem",
@@ -399,7 +401,11 @@
                 "title": "Configurações de Atalhos",
                 "set_hotkey": "Pressione para Definir a Tecla de Atalho",
                 "selection_translate": "Traduzir Selecionado",
-                "ocr_recognize": "Reconhecimento de Texto"
+                "ocr_recognize": "Reconhecimento de Texto",
+                "selection_replace": "Traduzir e substituir seleção",
+                "selection_action_menu": "Menu de ações da seleção",
+                "ocr_silent_recognize": "OCR silencioso da captura",
+                "ocr_overlay_translate": "Sobreposição de tradução da captura"
             },
             "service": {
                 "add_service": "Adicionar Serviço",
@@ -438,6 +444,19 @@
             "history": {
                 "label": "Histórico",
                 "title": "Histórico"
+            },
+            "selection_assistant": {
+                "label": "Assistente de seleção",
+                "action_menu": "Menu de ações",
+                "action_menu_tip": "Arraste para reordenar; use o interruptor para mostrar ou ocultar",
+                "disabled_actions": "Desativado (ative pelo interruptor)",
+                "search_url": "URL de pesquisa",
+                "search_url_tip": "%s será substituído pelo texto selecionado",
+                "need_pct_s": "O URL deve conter o marcador %s",
+                "restore_clipboard": "Restaurar a área de transferência após substituir",
+                "success_notify": "Notificar após substituição bem-sucedida",
+                "least_one": "Mantenha pelo menos uma ação",
+                "title": "Assistente de seleção"
             }
         },
         "translate": {
@@ -448,7 +467,10 @@
             "translate_back": "Tradução de volta ao original",
             "translate": "Traduzir",
             "copy": "Copiar",
-            "speak": "Falar"
+            "speak": "Falar",
+            "replace": "Substituir original",
+            "replace_success": "Texto original substituído",
+            "replace_failed": "Falha ao substituir, tente novamente"
         },
         "updater": {
             "installed": "Instalação concluída, reinicie a aplicação para que as alterações entrem em vigor",
@@ -467,6 +489,21 @@
             "copy_text": "Copiar",
             "delete_space": "Apagar Espaço",
             "copy_img": "Copiar imagem"
+        },
+        "action_menu": {
+            "translate": "Traduzir",
+            "copy": "Copiar",
+            "search": "Pesquisar",
+            "replace": "Substituir",
+            "speak": "Ler",
+            "lookup": "Dicionário",
+            "copied": "Copiado para a área de transferência"
+        },
+        "overlay": {
+            "toggle_view": "Alternar tradução/original",
+            "copy_all": "Copiar todas as traduções",
+            "close": "Fechar",
+            "translate_failed": "Falha na tradução"
         }
     }
 }

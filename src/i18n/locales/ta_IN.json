@@ -58,14 +58,14 @@
                 "delete_newline": "நியூலைனை நீக்கு",
                 "remember_language": "இலக்கு மொழியை நினைவில் கொள்ளுங்கள்",
                 "font_size": {
-                    "title": "எழுத்துரு அளவு",
                     "10": "மிகவும் சிறியது (10px)",
                     "12": "மிகச் சிறியது (12px)",
                     "14": "சிறிய (14px)",
-                    "24": "மிகப் பெரியது (24px)",
                     "16": "தரநிலை (16px)",
                     "18": "பெரிய (18px)",
-                    "20": "மிகப் பெரியது (20px)"
+                    "20": "மிகப் பெரியது (20px)",
+                    "24": "மிகப் பெரியது (24px)",
+                    "title": "எழுத்துரு அளவு"
                 },
                 "window_position": "சாளர நிலை",
                 "mouse": "சுட்டியைப் பின்பற்றுங்கள்",
@@ -85,7 +85,9 @@
                 "delete_newline": "ஆட்டோ டெலேட் நியூலைன்",
                 "auto_copy": "ஆட்டோ நகல்",
                 "close_on_blur": "கவனம் இழக்கும்போது சாளரத்தை மூடு",
-                "hide_window": "அங்கீகார சாளரத்தை மறைக்கவும்"
+                "hide_window": "அங்கீகார சாளரத்தை மறைக்கவும்",
+                "silent_auto_copy": "Silent OCR: auto copy result",
+                "silent_notify": "Silent OCR: send notification"
             },
             "general": {
                 "label": "பொது",
@@ -99,14 +101,14 @@
                 "app_font": "எழுத்துரு",
                 "app_fallback_font": "குறைவடையும் எழுத்துரு",
                 "font_size": {
-                    "title": "எழுத்துரு அளவு",
                     "10": "கூடுதல் சிறியது (10px)",
                     "12": "மிகச் சிறியது (12px)",
                     "14": "சிறிய (14px)",
                     "16": "தரநிலை (16px)",
                     "18": "பெரிய (18px)",
                     "20": "மிகப் பெரியது (20px)",
-                    "24": "கூடுதல் பெரிய (24px)"
+                    "24": "கூடுதல் பெரிய (24px)",
+                    "title": "எழுத்துரு அளவு"
                 },
                 "theme": {
                     "light": "ஒளி",
@@ -144,7 +146,11 @@
                 "ocr_translate": "திரைக்காட்சி மொழிபெயர்ப்பு",
                 "is_register": "ஆட்கி ஏற்கனவே பதிவு செய்யப்பட்டுள்ளது",
                 "success": "ஆட்கி பதிவு செய்",
-                "set_hotkey": "ஆட்ச்கியை அமைக்க அழுத்தவும்"
+                "set_hotkey": "ஆட்ச்கியை அமைக்க அழுத்தவும்",
+                "selection_replace": "Selection Translate & Replace",
+                "selection_action_menu": "Selection Action Menu",
+                "ocr_silent_recognize": "Silent Screenshot OCR",
+                "ocr_overlay_translate": "Screenshot Translation Overlay"
             },
             "service": {
                 "label": "பணி",
@@ -203,6 +209,19 @@
                 "qq_group": "QQ குழு",
                 "telegram": "தந்தி",
                 "discussion": "அறிவிலிமையம் கலந்துரையாடல்"
+            },
+            "selection_assistant": {
+                "label": "Selection Assistant",
+                "action_menu": "Action Menu",
+                "action_menu_tip": "Drag to reorder; use the switch to show or hide in the selection menu",
+                "disabled_actions": "Disabled (toggle to enable)",
+                "search_url": "Search URL",
+                "search_url_tip": "%s will be replaced with the selected text",
+                "need_pct_s": "URL must contain the %s placeholder",
+                "restore_clipboard": "Restore clipboard after replacing",
+                "success_notify": "Notify after successful replacement",
+                "least_one": "Keep at least one action",
+                "title": "Selection Assistant"
             }
         },
         "services": {
@@ -466,7 +485,25 @@
             "copy": "நகலெடு",
             "retry": "மீண்டும் முயற்சிக்கவும்",
             "delete_newline": "நியூலைனை நீக்கு",
-            "translate_back": "மொழிபெயர்ப்பு மீண்டும் அசலுக்கு"
+            "translate_back": "மொழிபெயர்ப்பு மீண்டும் அசலுக்கு",
+            "replace": "Replace Original",
+            "replace_success": "Original text replaced",
+            "replace_failed": "Replace failed, please try again"
+        },
+        "action_menu": {
+            "translate": "Translate",
+            "copy": "Copy",
+            "search": "Search",
+            "replace": "Replace",
+            "speak": "Speak",
+            "lookup": "Lookup",
+            "copied": "Copied to clipboard"
+        },
+        "overlay": {
+            "toggle_view": "Toggle translation/original",
+            "copy_all": "Copy all translations",
+            "close": "Close",
+            "translate_failed": "மொழிபெயர்ப்பு தோல்வியடைந்தது"
         }
     }
 }

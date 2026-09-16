@@ -75,13 +75,13 @@
                 "title": "تنظیمات عمومی",
                 "default_font": "پیشفرض",
                 "font_size": {
-                    "20": "خیلی بزرگ (20px)",
-                    "18": "بزرگ (18px)",
+                    "10": "خیلی خیلی کوچک (10px)",
+                    "12": "خیلی کوچک (12px)",
                     "14": "کوچک (14px)",
                     "16": "استاندارد (16px)",
-                    "12": "خیلی کوچک (12px)",
+                    "18": "بزرگ (18px)",
+                    "20": "خیلی بزرگ (20px)",
                     "24": "خیلی خیلی بزرگ (24px)",
-                    "10": "خیلی خیلی کوچک (10px)",
                     "title": "اندازه فونت"
                 },
                 "app_font": "فونت",
@@ -107,17 +107,58 @@
                 "close_on_blur": "روی Blur ببندید",
                 "incremental_translate": "ترجمه افزایشی",
                 "target_language": "زبان مقصد"
+            },
+            "hotkey": {
+                "selection_replace": "Selection Translate & Replace",
+                "selection_action_menu": "Selection Action Menu",
+                "ocr_silent_recognize": "Silent Screenshot OCR",
+                "ocr_overlay_translate": "Screenshot Translation Overlay"
+            },
+            "selection_assistant": {
+                "label": "Selection Assistant",
+                "action_menu": "Action Menu",
+                "action_menu_tip": "Drag to reorder; use the switch to show or hide in the selection menu",
+                "disabled_actions": "Disabled (toggle to enable)",
+                "search_url": "Search URL",
+                "search_url_tip": "%s will be replaced with the selected text",
+                "need_pct_s": "URL must contain the %s placeholder",
+                "restore_clipboard": "Restore clipboard after replacing",
+                "success_notify": "Notify after successful replacement",
+                "least_one": "Keep at least one action",
+                "title": "Selection Assistant"
+            },
+            "recognize": {
+                "silent_auto_copy": "Silent OCR: auto copy result",
+                "silent_notify": "Silent OCR: send notification"
             }
         },
         "translate": {
             "delete_newline": "پاک کردن خط جدید",
-            "retry": "تلاش مجدد"
+            "retry": "تلاش مجدد",
+            "replace": "Replace Original",
+            "replace_success": "Original text replaced",
+            "replace_failed": "Replace failed, please try again"
         },
         "recognize": {
             "delete_newline": "پاک کردن خط جدید",
             "copy_text": "کپی",
             "delete_space": "پاک کردن فاصله",
             "copy_img": "کپی عکس"
+        },
+        "action_menu": {
+            "translate": "Translate",
+            "copy": "Copy",
+            "search": "Search",
+            "replace": "Replace",
+            "speak": "Speak",
+            "lookup": "Lookup",
+            "copied": "Copied to clipboard"
+        },
+        "overlay": {
+            "toggle_view": "Toggle translation/original",
+            "copy_all": "Copy all translations",
+            "close": "Close",
+            "translate_failed": "ترجمه ناموفق بود"
         }
     }
 }

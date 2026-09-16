@@ -34,13 +34,13 @@
                 },
                 "font_size": {
                     "10": "極小 (10px)",
-                    "title": "文字サイズ",
+                    "12": "非常に小さい (12px)",
+                    "14": "小 (14px)",
+                    "16": "標準 (16px)",
+                    "18": "大 (18px)",
                     "20": "非常に大きい (20px)",
                     "24": "特大 (24px)",
-                    "18": "大 (18px)",
-                    "16": "標準 (16px)",
-                    "12": "非常に小さい (12px)",
-                    "14": "小 (14px)"
+                    "title": "文字サイズ"
                 },
                 "default_font": "デフォルト",
                 "dev_mode": "開発者モード",
@@ -54,12 +54,18 @@
             },
             "hotkey": {
                 "label": "ホットキー",
-                "title": "ホットキー設定"
+                "title": "ホットキー設定",
+                "selection_replace": "選択翻訳して置換",
+                "selection_action_menu": "選択アクションメニュー",
+                "ocr_silent_recognize": "サイレントスクリーンショット OCR",
+                "ocr_overlay_translate": "スクリーンショット翻訳オーバーレイ"
             },
             "recognize": {
                 "title": "認識設定",
                 "label": "テキスト認識",
-                "delete_newline": "改行の自動削除"
+                "delete_newline": "改行の自動削除",
+                "silent_auto_copy": "サイレントOCR：結果を自動コピー",
+                "silent_notify": "サイレントOCR：通知を送信"
             },
             "service": {
                 "title": "サービス設定",
@@ -68,6 +74,19 @@
             "history": {
                 "label": "履歴",
                 "title": "履歴"
+            },
+            "selection_assistant": {
+                "label": "選択アシスタント",
+                "action_menu": "アクションメニュー",
+                "action_menu_tip": "ドラッグで並べ替え、スイッチでメニュー表示を切り替えます",
+                "disabled_actions": "無効（スイッチで有効化）",
+                "search_url": "検索 URL",
+                "search_url_tip": "%s は選択したテキストに置き換えられます",
+                "need_pct_s": "URL には %s プレースホルダーが必要です",
+                "restore_clipboard": "置換後にクリップボードを復元",
+                "success_notify": "置換成功時に通知する",
+                "least_one": "アクションは1つ以上残してください",
+                "title": "選択アシスタント"
             }
         },
         "languages": {
@@ -104,7 +123,10 @@
         "translate": {
             "translate": "翻訳",
             "delete_newline": "改行を削除",
-            "copy": "コピー"
+            "copy": "コピー",
+            "replace": "原文を置換",
+            "replace_success": "原文を置換しました",
+            "replace_failed": "置換に失敗しました。再試行してください"
         },
         "recognize": {
             "translate": "翻訳",
@@ -156,6 +178,21 @@
                     "name": "コレクション名"
                 }
             }
+        },
+        "action_menu": {
+            "translate": "翻訳",
+            "copy": "コピー",
+            "search": "検索",
+            "replace": "置換",
+            "speak": "読み上げ",
+            "lookup": "辞書",
+            "copied": "クリップボードにコピーしました"
+        },
+        "overlay": {
+            "toggle_view": "訳文/原文を切替",
+            "copy_all": "すべての訳文をコピー",
+            "close": "閉じる",
+            "translate_failed": "翻訳に失敗しました"
         }
     }
 }

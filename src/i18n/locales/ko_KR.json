@@ -100,14 +100,14 @@
                 "app_font": "글꼴",
                 "app_fallback_font": "대체 글꼴",
                 "font_size": {
-                    "title": "글꼴 크기",
                     "10": "최소 크기 (10px)",
                     "12": "아주 작게 (12px)",
                     "14": "작게 (14px)",
                     "16": "보통 (16px)",
                     "18": "크게 (18px)",
                     "20": "아주 크게 (20px)",
-                    "24": "최대 크기 (24px)"
+                    "24": "최대 크기 (24px)",
+                    "title": "글꼴 크기"
                 },
                 "default_font": "기본 글꼴",
                 "theme": {
@@ -153,14 +153,14 @@
                 "delete_newline": "줄바꿈 삭제",
                 "remember_language": "도착 언어 유지",
                 "font_size": {
-                    "title": "글꼴 크기",
                     "10": "최소 크기 (10px)",
                     "12": "아주 작게 (12px)",
                     "14": "작게 (14px)",
                     "16": "보통 (16px)",
                     "18": "크게 (18px)",
                     "20": "아주 크게 (20px)",
-                    "24": "최대 크기 (24px)"
+                    "24": "최대 크기 (24px)",
+                    "title": "글꼴 크기"
                 },
                 "window_position": "창 팝업 위치",
                 "mouse": "마우스 위치 기준",
@@ -187,7 +187,9 @@
                 "delete_newline": "줄바꿈 자동 삭제",
                 "auto_copy": "자동 복사",
                 "close_on_blur": "다른 곳을 클릭하여 창 숨기기",
-                "hide_window": "인식 창 숨기기"
+                "hide_window": "인식 창 숨기기",
+                "silent_auto_copy": "조용한 OCR: 결과 자동 복사",
+                "silent_notify": "조용한 OCR: 알림 보내기"
             },
             "hotkey": {
                 "label": "단축키",
@@ -198,7 +200,11 @@
                 "ocr_translate": "스크린샷 번역",
                 "is_register": "해당 단축키는 이미 등록되어 있습니다",
                 "success": "단축키가 정상 등록되었습니다",
-                "set_hotkey": "설정하려는 단축키를 입력하세요"
+                "set_hotkey": "설정하려는 단축키를 입력하세요",
+                "selection_replace": "선택 번역 후 대체",
+                "selection_action_menu": "선택 동작 메뉴",
+                "ocr_silent_recognize": "조용한 스크린샷 OCR",
+                "ocr_overlay_translate": "스크린샷 번역 오버레이"
             },
             "service": {
                 "label": "서비스",
@@ -257,6 +263,19 @@
                 "qq_group": "QQ 그룹",
                 "telegram": "텔레그램",
                 "discussion": "GitHub 토론"
+            },
+            "selection_assistant": {
+                "label": "선택 도우미",
+                "action_menu": "동작 메뉴",
+                "action_menu_tip": "드래그하여 순서를 변경하고 스위치로 메뉴 표시를 전환하세요",
+                "disabled_actions": "비활성화됨 (스위치로 활성화)",
+                "search_url": "검색 URL",
+                "search_url_tip": "%s는 선택한 텍스트로 대체됩니다",
+                "need_pct_s": "URL에 %s 자리표시자가 필요합니다",
+                "restore_clipboard": "대체 후 클립보드 복원",
+                "success_notify": "대체 성공 시 알림",
+                "least_one": "동작은 최소 하나 이상 유지하세요",
+                "title": "선택 도우미"
             }
         },
         "updater": {
@@ -268,6 +287,26 @@
             "installing": "설치 중…",
             "cancel": "취소",
             "installed": "설치가 완료되었습니다. 변경 사항을 적용하려면 애플리케이션을 종료 후 다시 시작하세요"
+        },
+        "action_menu": {
+            "translate": "번역",
+            "copy": "복사",
+            "search": "검색",
+            "replace": "대체",
+            "speak": "읽기",
+            "lookup": "사전 찾기",
+            "copied": "클립보드에 복사됨"
+        },
+        "translate": {
+            "replace": "원문 대체",
+            "replace_success": "원문이 대체되었습니다",
+            "replace_failed": "대체에 실패했습니다. 다시 시도하세요"
+        },
+        "overlay": {
+            "toggle_view": "번역/원본 전환",
+            "copy_all": "모든 번역 복사",
+            "close": "닫기",
+            "translate_failed": "번역 실패"
         }
     }
 }

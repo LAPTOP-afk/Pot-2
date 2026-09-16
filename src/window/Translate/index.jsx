@@ -12,6 +12,7 @@ import { BsPinFill } from 'react-icons/bs';
 import LanguageArea from './components/LanguageArea';
 import SourceArea from './components/SourceArea';
 import TargetArea from './components/TargetArea';
+import { isBlurSuppressed } from './blur_guard';
 import { osType } from '../../utils/env';
 import { useConfig } from '../../hooks';
 import { store } from '../../utils/store';
@@ -23,7 +24,7 @@ let moveTimeout = null;
 
 const listenBlur = () => {
     return listen('tauri://blur', () => {
-        if (appWindow.label === 'translate') {
+        if (appWindow.label === 'translate' && !isBlurSuppressed()) {
             if (blurTimeout) {
                 clearTimeout(blurTimeout);
             }

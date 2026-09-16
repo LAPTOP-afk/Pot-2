@@ -1,3 +1,4 @@
+use crate::replace::is_clipboard_suppressed;
 use crate::window::text_translate;
 use std::sync::Mutex;
 use tauri::{ClipboardManager, Manager};
@@ -16,8 +17,13 @@ pub fn start_clipboard_monitor(app_handle: tauri::AppHandle) {
                         match result {
                             Some(v) => {
                                 if v != pre_text {
-                                    text_translate(v.clone());
-                                    pre_text = v;
+                                    // 程序性写剪贴板（译文替换）不触发监听翻译
+                                    if is_clipboard_suppressed() {
+                                        pre_text = v;
+                                    } else {
+                                        text_translate(v.clone());
+                                        pre_text = v;
+                                    }
                                 }
                             }
                             None => {}

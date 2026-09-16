@@ -8,6 +8,7 @@ mod config;
 mod error;
 mod hotkey;
 mod lang_detect;
+mod replace;
 mod screenshot;
 mod server;
 mod system_ocr;
@@ -23,6 +24,7 @@ use hotkey::*;
 use lang_detect::*;
 use log::info;
 use once_cell::sync::OnceCell;
+use replace::*;
 use screenshot::screenshot;
 use server::*;
 use std::sync::Mutex;
@@ -85,6 +87,7 @@ fn main() {
                 config_window();
             }
             app.manage(StringWrapper(Mutex::new("".to_string())));
+            app.manage(ScreenshotRectWrapper(Mutex::new(None)));
             // Update Tray Menu
             update_tray(app.app_handle(), "".to_string(), "".to_string());
             // Start http server
@@ -132,8 +135,10 @@ fn main() {
             get_text,
             cut_image,
             get_base64,
+            get_screenshot_rect,
             copy_img,
             system_ocr,
+            system_ocr_lines,
             set_proxy,
             unset_proxy,
             run_binary,
@@ -147,7 +152,13 @@ fn main() {
             local,
             install_plugin,
             font_list,
-            aliyun
+            aliyun,
+            paste_replace,
+            window::text_translate,
+            window::replace_translate_text,
+            window::image_translate_text,
+            window::get_recognize_mode,
+            window::set_recognize_mode,
         ])
         .on_system_tray_event(tray_event_handler)
         .build(tauri::generate_context!())

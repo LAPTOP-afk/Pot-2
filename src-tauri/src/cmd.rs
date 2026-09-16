@@ -6,6 +6,7 @@ use crate::APP;
 use log::{error, info};
 use serde_json::{json, Value};
 use std::io::Read;
+use std::sync::Mutex;
 use tauri::Manager;
 
 #[tauri::command]
@@ -21,7 +22,14 @@ pub fn reload_store() {
 }
 
 #[tauri::command]
-pub fn cut_image(left: u32, top: u32, width: u32, height: u32, app_handle: tauri::AppHandle) {
+pub fn cut_image(
+    left: u32,
+    top: u32,
+    width: u32,
+    height: u32,
+    window: tauri::Window,
+    app_handle: tauri::AppHandle,
+) {
     use dirs::cache_dir;
     use image::GenericImage;
     info!("Cut image: {}x{}+{}+{}", width, height, left, top);
@@ -45,8 +53,49 @@ pub fn cut_image(left: u32, top: u32, width: u32, height: u32, app_handle: tauri
         Ok(_) => {}
         Err(e) => {
             error!("{:?}", e.to_string());
+            return;
         }
     }
+    // 保存裁剪矩形（物理像素，相对于所在显示器），供截图译文叠加窗定位
+    if let Ok(Some(monitor)) = window.current_monitor() {
+        let pos = monitor.position();
+        let rect = ScreenshotRect {
+            left: left as i32,
+            top: top as i32,
+            width,
+            height,
+            scale_factor: monitor.scale_factor(),
+            monitor_x: pos.x,
+            monitor_y: pos.y,
+        };
+        app_handle
+            .state::<ScreenshotRectWrapper>()
+            .0
+            .lock()
+            .unwrap()
+            .replace(rect);
+    }
+}
+
+// 截图裁剪矩形（物理像素，相对于显示器），叠加窗据此定位
+#[derive(Clone, serde::Serialize)]
+pub struct ScreenshotRect {
+    pub left: i32,
+    pub top: i32,
+    pub width: u32,
+    pub height: u32,
+    pub scale_factor: f64,
+    pub monitor_x: i32,
+    pub monitor_y: i32,
+}
+
+pub struct ScreenshotRectWrapper(pub Mutex<Option<ScreenshotRect>>);
+
+#[tauri::command]
+pub fn get_screenshot_rect(
+    state: tauri::State<ScreenshotRectWrapper>,
+) -> Option<ScreenshotRect> {
+    state.0.lock().unwrap().clone()
 }
 
 #[tauri::command]

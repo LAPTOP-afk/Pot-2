@@ -304,13 +304,13 @@
                 "title": "Paramètres généraux",
                 "default_font": "Défaut",
                 "font_size": {
-                    "20": "Très large (20px)",
-                    "18": "Large (18px)",
+                    "10": "Extra petit (10px)",
+                    "12": "Très petit (12px)",
                     "14": "Petit (14px)",
                     "16": "Standard (16px)",
-                    "12": "Très petit (12px)",
+                    "18": "Large (18px)",
+                    "20": "Très large (20px)",
                     "24": "Extra large (24px)",
-                    "10": "Extra petit (10px)",
                     "title": "Taille de la police"
                 },
                 "app_font": "Police de caractères",
@@ -350,14 +350,14 @@
                 "incremental_translate": "Traduction incrémentale",
                 "target_language": "Langue cible",
                 "font_size": {
-                    "14": "Petit (14px)",
-                    "title": "Taille de la police",
-                    "24": "Très très grand (24px)",
-                    "20": "Très grand (20px)",
-                    "12": "Très petit (12px)",
-                    "16": "Normal (16px)",
                     "10": "Très très petit (10px)",
-                    "18": "Grand (18px)"
+                    "12": "Très petit (12px)",
+                    "14": "Petit (14px)",
+                    "16": "Normal (16px)",
+                    "18": "Grand (18px)",
+                    "20": "Très grand (20px)",
+                    "24": "Très très grand (24px)",
+                    "title": "Taille de la police"
                 },
                 "history_disable": "Désactiver l'historique"
             },
@@ -388,7 +388,9 @@
                 "title": "Paramètres de reconnaissance",
                 "label": "Reconnaissance",
                 "hide_window": "Masquer la fenêtre de reconnaissance",
-                "auto_copy": "Copie automatique"
+                "auto_copy": "Copie automatique",
+                "silent_auto_copy": "OCR silencieux : copier automatiquement le résultat",
+                "silent_notify": "OCR silencieux : envoyer une notification"
             },
             "hotkey": {
                 "ocr_translate": "Traduction de capture d'écran",
@@ -399,7 +401,11 @@
                 "title": "Paramètres des raccourcis",
                 "selection_translate": "Traduction de la sélection",
                 "ocr_recognize": "Reconnaissance de texte",
-                "set_hotkey": "Appuyer pour définir"
+                "set_hotkey": "Appuyer pour définir",
+                "selection_replace": "Traduire et remplacer la sélection",
+                "selection_action_menu": "Menu d'actions de sélection",
+                "ocr_silent_recognize": "OCR silencieux de capture",
+                "ocr_overlay_translate": "Superposition de traduction"
             },
             "service": {
                 "add_service": "Ajouter un service",
@@ -438,6 +444,19 @@
             "history": {
                 "label": "Historique",
                 "title": "Historique"
+            },
+            "selection_assistant": {
+                "label": "Assistant de sélection",
+                "action_menu": "Menu d'actions",
+                "action_menu_tip": "Glissez pour réordonner ; utilisez l'interrupteur pour afficher ou masquer",
+                "disabled_actions": "Désactivé (activez avec le commutateur)",
+                "search_url": "URL de recherche",
+                "search_url_tip": "%s sera remplacé par le texte sélectionné",
+                "need_pct_s": "L'URL doit contenir le paramètre %s",
+                "restore_clipboard": "Restaurer le presse-papiers après remplacement",
+                "success_notify": "Notifier après un remplacement réussi",
+                "least_one": "Conservez au moins une action",
+                "title": "Assistant de sélection"
             }
         },
         "translate": {
@@ -448,7 +467,10 @@
             "translate_back": "Revenir à la traduction d'origine",
             "translate": "Traduire",
             "copy": "Copier",
-            "speak": "Écouter"
+            "speak": "Écouter",
+            "replace": "Remplacer l'original",
+            "replace_success": "Texte original remplacé",
+            "replace_failed": "Échec du remplacement, veuillez réessayer"
         },
         "updater": {
             "installed": "Installation terminée. Relancez l'application pour que les modifications prennent effet",
@@ -467,6 +489,21 @@
             "copy_text": "Copier",
             "copy_img": "Copier l'image",
             "delete_space": "Supprimer l'espace"
+        },
+        "action_menu": {
+            "translate": "Traduire",
+            "copy": "Copier",
+            "search": "Rechercher",
+            "replace": "Remplacer",
+            "speak": "Lire",
+            "lookup": "Dictionnaire",
+            "copied": "Copié dans le presse-papiers"
+        },
+        "overlay": {
+            "toggle_view": "Basculer traduction/original",
+            "copy_all": "Copier toutes les traductions",
+            "close": "Fermer",
+            "translate_failed": "Échec de la traduction"
         }
     }
 }

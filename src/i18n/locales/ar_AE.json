@@ -54,14 +54,14 @@
                 "app_theme": "السمة",
                 "app_font": "الخط",
                 "font_size": {
-                    "12": "صغير جدا (١٢بكسل)",
                     "10": "بالغ الصغر (١٠بكسل)",
+                    "12": "صغير جدا (١٢بكسل)",
                     "14": "صغير (١٤بكسل)",
                     "16": "عادي (١٦بكسل)",
-                    "title": "حجم الخط",
-                    "20": "كبير جدا (٢٠بكسل)",
                     "18": "كبير (١٨بكسل)",
-                    "24": "بالغ الكبر (٢٤بكسل)"
+                    "20": "كبير جدا (٢٠بكسل)",
+                    "24": "بالغ الكبر (٢٤بكسل)",
+                    "title": "حجم الخط"
                 },
                 "default_font": "الافتراضي",
                 "theme": {
@@ -105,14 +105,14 @@
                 "delete_newline": "احذف السطر الجديد",
                 "remember_language": "تذكر اللغة المستهدفة",
                 "font_size": {
-                    "title": "حجم الخط",
                     "10": "صغير جدا جدا (١٠بكسل)",
                     "12": "صغير جدا (١٢بكسل)",
                     "14": "صغير (١٤بكسل)",
                     "16": "عادي (١٦بكسل)",
-                    "20": "كبير جدا (٢٠بكسل)",
                     "18": "كبير (١٨بكسل)",
-                    "24": "كبير جدا جدا (٢٤بكسل)"
+                    "20": "كبير جدا (٢٠بكسل)",
+                    "24": "كبير جدا جدا (٢٤بكسل)",
+                    "title": "حجم الخط"
                 },
                 "source_target": "المصدر+المستهدف",
                 "remember_window_size": "تذكر حجم النافذة",
@@ -144,7 +144,11 @@
                 "ocr_translate": "أخذ لقطة للترجمة",
                 "is_register": "هذا الاختصار مستخدم",
                 "success": "سجل الاختصار بنجاح",
-                "set_hotkey": "اضغط لاختيار مفتاح اختصار"
+                "set_hotkey": "اضغط لاختيار مفتاح اختصار",
+                "selection_replace": "Selection Translate & Replace",
+                "selection_action_menu": "Selection Action Menu",
+                "ocr_silent_recognize": "Silent Screenshot OCR",
+                "ocr_overlay_translate": "Screenshot Translation Overlay"
             },
             "recognize": {
                 "title": "إعدادات التعرف",
@@ -153,7 +157,9 @@
                 "auto_copy": "نسخ تلقائي",
                 "close_on_blur": "أغلق النافذة عند فقدان التركيز",
                 "hide_window": "اخف نافذة التعرف",
-                "label": "التعرف"
+                "label": "التعرف",
+                "silent_auto_copy": "Silent OCR: auto copy result",
+                "silent_notify": "Silent OCR: send notification"
             },
             "service": {
                 "label": "الخدمات",
@@ -212,6 +218,19 @@
                 "qq_group": "مجموعة QQ",
                 "discussion": "مناقشة جيتهب",
                 "issue": "ابلاغ المشكلة"
+            },
+            "selection_assistant": {
+                "label": "Selection Assistant",
+                "action_menu": "Action Menu",
+                "action_menu_tip": "Drag to reorder; use the switch to show or hide in the selection menu",
+                "disabled_actions": "Disabled (toggle to enable)",
+                "search_url": "Search URL",
+                "search_url_tip": "%s will be replaced with the selected text",
+                "need_pct_s": "URL must contain the %s placeholder",
+                "restore_clipboard": "Restore clipboard after replacing",
+                "success_notify": "Notify after successful replacement",
+                "least_one": "Keep at least one action",
+                "title": "Selection Assistant"
             }
         },
         "updater": {
@@ -240,7 +259,10 @@
             "speak": "تكلم",
             "add_collection_success": "تمت الإضافة إلى المجموعة بنجاح",
             "recognizing": "جاري التعرف",
-            "translate_back": "إعادة الترجمة الى النص الاصلي"
+            "translate_back": "إعادة الترجمة الى النص الاصلي",
+            "replace": "Replace Original",
+            "replace_success": "Original text replaced",
+            "replace_failed": "Replace failed, please try again"
         },
         "services": {
             "collection": {
@@ -467,6 +489,21 @@
                     "token": "رمز"
                 }
             }
+        },
+        "action_menu": {
+            "translate": "Translate",
+            "copy": "Copy",
+            "search": "Search",
+            "replace": "Replace",
+            "speak": "Speak",
+            "lookup": "Lookup",
+            "copied": "Copied to clipboard"
+        },
+        "overlay": {
+            "toggle_view": "Toggle translation/original",
+            "copy_all": "Copy all translations",
+            "close": "Close",
+            "translate_failed": "فشل الترجمة"
         }
     }
 }

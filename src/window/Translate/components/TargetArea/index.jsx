@@ -21,20 +21,23 @@ import { TbTransformFilled } from 'react-icons/tb';
 import { HiOutlineVolumeUp } from 'react-icons/hi';
 import { semanticColors } from '@nextui-org/theme';
 import toast, { Toaster } from 'react-hot-toast';
-import { MdContentCopy } from 'react-icons/md';
+import { MdContentCopy, MdFindReplace } from 'react-icons/md';
 import { useTranslation } from 'react-i18next';
 import Database from 'tauri-plugin-sql-api';
 import { GiCycle } from 'react-icons/gi';
 import { useTheme } from 'next-themes';
-import { useAtomValue } from 'jotai';
+import { useAtom, useAtomValue } from 'jotai';
 import { nanoid } from 'nanoid';
 import { useSpring, animated } from '@react-spring/web';
 import useMeasure from 'react-use-measure';
+import { invoke } from '@tauri-apps/api';
+import { appWindow } from '@tauri-apps/api/window';
 
 import * as builtinCollectionServices from '../../../../services/collection';
 import { sourceLanguageAtom, targetLanguageAtom } from '../LanguageArea';
 import { useConfig, useToastStyle, useVoice } from '../../../../hooks';
-import { sourceTextAtom, detectLanguageAtom } from '../SourceArea';
+import { sourceTextAtom, detectLanguageAtom, replaceModeAtom, windowTypeAtom } from '../SourceArea';
+import { setBlurSuppress } from '../../blur_guard';
 import { invoke_plugin } from '../../../../utils/invoke_plugin';
 import * as builtinServices from '../../../../services/translate';
 import * as builtinTtsServices from '../../../../services/tts';
@@ -77,6 +80,10 @@ export default function TargetArea(props) {
     const [autoCopy] = useConfig('translate_auto_copy', 'disable');
     const [hideWindow] = useConfig('translate_hide_window', false);
     const [clipboardMonitor] = useConfig('clipboard_monitor', false);
+    const [replaceMode, setReplaceMode] = useAtom(replaceModeAtom);
+    const [windowType] = useAtom(windowTypeAtom);
+    const [replaceRestoreClipboard] = useConfig('replace_restore_clipboard', true);
+    const [replaceSuccessNotify] = useConfig('replace_success_notify', true);
 
     const detectLanguage = useAtomValue(detectLanguageAtom);
     const [ttsPluginInfo, setTtsPluginInfo] = useState();
@@ -104,7 +111,7 @@ export default function TargetArea(props) {
             hideWindow !== null &&
             clipboardMonitor !== null
         ) {
-            if (autoCopy === 'source' && !clipboardMonitor) {
+            if (autoCopy === 'source' && !clipboardMonitor && !replaceMode) {
                 writeText(sourceText).then(() => {
                     if (hideWindow) {
                         sendNotification({ title: t('common.write_clipboard'), body: sourceText });
@@ -189,7 +196,7 @@ export default function TargetArea(props) {
                     },
                     utils,
                 }).then(
-                    (v) => {
+                    async (v) => {
                         info(`[${currentTranslateServiceInstanceKey}]resolve:` + v);
                         if (translateID[index] !== id) return;
                         setResult(typeof v === 'string' ? v.trim() : v);
@@ -205,6 +212,10 @@ export default function TargetArea(props) {
                                 translateServiceName,
                                 typeof v === 'string' ? v.trim() : v
                             );
+                        }
+                        // 静默"翻译并替换原文"：成功粘贴后跳过自动复制逻辑
+                        if (await trySilentReplace(v)) {
+                            return;
                         }
                         if (index === 0 && !clipboardMonitor) {
                             switch (autoCopy) {
@@ -233,11 +244,13 @@ export default function TargetArea(props) {
                     (e) => {
                         info(`[${currentTranslateServiceInstanceKey}]reject:` + e);
                         if (translateID[index] !== id) return;
-                        setError(e.toString());
                         setIsLoading(false);
+                        if (handleReplaceModeFailure(e.toString())) return;
+                        setError(e.toString());
                     }
                 );
             } else {
+                if (handleReplaceModeFailure('Language not supported')) return;
                 setError('Language not supported');
             }
         } else {
@@ -279,40 +292,113 @@ export default function TargetArea(props) {
                                     typeof v === 'string' ? v.trim() : v
                                 );
                             }
-                            if (index === 0 && !clipboardMonitor) {
-                                switch (autoCopy) {
-                                    case 'target':
-                                        writeText(v).then(() => {
-                                            if (hideWindow) {
-                                                sendNotification({ title: t('common.write_clipboard'), body: v });
-                                            }
-                                        });
-                                        break;
-                                    case 'source_target':
-                                        writeText(sourceText.trim() + '\n\n' + v).then(() => {
-                                            if (hideWindow) {
-                                                sendNotification({
-                                                    title: t('common.write_clipboard'),
-                                                    body: sourceText.trim() + '\n\n' + v,
-                                                });
-                                            }
-                                        });
-                                        break;
-                                    default:
-                                        break;
+                            // 静默"翻译并替换原文"：成功粘贴后跳过自动复制逻辑
+                            (async () => {
+                                if (await trySilentReplace(v)) return;
+                                if (index === 0 && !clipboardMonitor) {
+                                    switch (autoCopy) {
+                                        case 'target':
+                                            writeText(v).then(() => {
+                                                if (hideWindow) {
+                                                    sendNotification({ title: t('common.write_clipboard'), body: v });
+                                                }
+                                            });
+                                            break;
+                                        case 'source_target':
+                                            writeText(sourceText.trim() + '\n\n' + v).then(() => {
+                                                if (hideWindow) {
+                                                    sendNotification({
+                                                        title: t('common.write_clipboard'),
+                                                        body: sourceText.trim() + '\n\n' + v,
+                                                    });
+                                                }
+                                            });
+                                            break;
+                                        default:
+                                            break;
+                                    }
                                 }
-                            }
+                            })();
                         },
                         (e) => {
                             info(`[${currentTranslateServiceInstanceKey}]reject:` + e);
                             if (translateID[index] !== id) return;
-                            setError(e.toString());
                             setIsLoading(false);
+                            if (handleReplaceModeFailure(e.toString())) return;
+                            setError(e.toString());
                         }
                     );
             } else {
+                if (handleReplaceModeFailure('Language not supported')) return;
                 setError('Language not supported');
             }
+        }
+    };
+
+    // 静默"翻译并替换原文"：仅 index===0 的字符串结果可粘贴
+    // 成功返回 true（调用方应跳过后续自动复制逻辑）；失败回退为普通展示窗口
+    const trySilentReplace = async (v) => {
+        if (index !== 0 || !replaceMode) return false;
+        if (typeof v === 'string' && v.trim() !== '') {
+            try {
+                await invoke('paste_replace', {
+                    text: v.trim(),
+                    restoreClipboard: replaceRestoreClipboard,
+                });
+                if (replaceSuccessNotify) {
+                    sendNotification({ title: t('translate.replace_success'), body: v.trim() });
+                }
+                // 替换完成：关闭隐藏窗（重建即复位 replaceMode），不残留后台窗口
+                appWindow.close();
+                return true;
+            } catch (e) {
+                info(`[${currentTranslateServiceInstanceKey}]paste_replace failed: ${e}`);
+                setReplaceMode(false);
+                setBlurSuppress(false);
+                await appWindow.show();
+                toast.error(t('translate.replace_failed'), { style: toastStyle });
+                return false;
+            }
+        }
+        // 非文本结果（如词典对象）无法粘贴：回退为普通展示窗口
+        setReplaceMode(false);
+        setBlurSuppress(false);
+        await appWindow.show();
+        toast.error(t('translate.replace_failed'), { style: toastStyle });
+        return false;
+    };
+
+    // replaceMode 下翻译被拒绝/语言不支持：发系统通知并关闭隐藏窗。
+    // 返回 true 表示已按静默流程处理（调用方应跳过普通 setError 展示）。
+    const handleReplaceModeFailure = (detail) => {
+        if (index !== 0 || !replaceMode) return false;
+        setReplaceMode(false);
+        sendNotification({
+            title: t('translate.replace_failed'),
+            body: String(detail ?? '').slice(0, 500),
+        });
+        appWindow.close();
+        return true;
+    };
+
+    // 结果窗手动点击"替换原文"：先隐藏窗口，恢复焦点后粘贴，完成后关闭
+    const handleManualReplace = async () => {
+        if (typeof result !== 'string' || result.trim() === '') return;
+        // 粘贴期间窗口隐藏且焦点在目标应用，屏蔽 blur 自动关闭直到替换结束
+        setBlurSuppress(true);
+        await appWindow.hide();
+        try {
+            await invoke('paste_replace', {
+                text: result.trim(),
+                restoreClipboard: replaceRestoreClipboard,
+            });
+            sendNotification({ title: t('translate.replace_success'), body: result.trim() });
+            appWindow.close();
+        } catch (e) {
+            // 失败时重新展示窗口，保留结果供手动复制
+            setBlurSuppress(false);
+            await appWindow.show();
+            throw e;
         }
     };
 
@@ -337,35 +423,69 @@ export default function TargetArea(props) {
         }
     }, [ttsServiceList]);
 
-    // handle tts speak
-    const handleSpeak = async () => {
+    // 通用 TTS：可朗读任意文本与语言（词典对象结果朗读源语言）
+    const speakText = async (text, lang) => {
+        if (!text) return;
         const instanceKey = ttsServiceList[0];
         if (getServiceSouceType(instanceKey) === ServiceSourceType.PLUGIN) {
             const pluginConfig = serviceInstanceConfigMap[instanceKey];
-            if (!(targetLanguage in ttsPluginInfo.language)) {
+            if (!ttsPluginInfo || !(lang in ttsPluginInfo.language)) {
                 throw new Error('Language not supported');
             }
             let [func, utils] = await invoke_plugin('tts', getServiceName(instanceKey));
-            let data = await func(result, ttsPluginInfo.language[targetLanguage], {
+            let data = await func(text, ttsPluginInfo.language[lang], {
                 config: pluginConfig,
                 utils,
             });
             speak(data);
         } else {
-            if (!(targetLanguage in builtinTtsServices[getServiceName(instanceKey)].Language)) {
+            const service = builtinTtsServices[getServiceName(instanceKey)];
+            if (!(lang in service.Language)) {
                 throw new Error('Language not supported');
             }
             const instanceConfig = serviceInstanceConfigMap[instanceKey];
-            let data = await builtinTtsServices[getServiceName(instanceKey)].tts(
-                result,
-                builtinTtsServices[getServiceName(instanceKey)].Language[targetLanguage],
-                {
-                    config: instanceConfig,
-                }
-            );
+            let data = await service.tts(text, service.Language[lang], {
+                config: instanceConfig,
+            });
             speak(data);
         }
     };
+
+    // 词典结果源语言：auto 时取检测语言
+    const dictSourceLanguage = sourceLanguage === 'auto' ? detectLanguage : sourceLanguage;
+
+    // 拍平词典对象用于复制（音标/释义/词组/例句，去除 HTML 标签）
+    const flattenDictionary = (r) => {
+        const stripHtml = (s) =>
+            String(s ?? '')
+                .replace(/<[^>]*>/g, '')
+                .trim();
+        const parts = [];
+        r.pronunciations?.forEach((p) => {
+            const line = [p.region, p.symbol].filter(Boolean).join(' ');
+            if (line) parts.push(line);
+        });
+        r.explanations?.forEach((group) => {
+            const trait = group.trait ? `${group.trait} ` : '';
+            group.explains?.forEach((explain, i) => {
+                const line = (i === 0 ? trait : '') + stripHtml(explain);
+                if (line) parts.push(line);
+            });
+        });
+        r.associations?.forEach((a) => {
+            const line = stripHtml(a);
+            if (line) parts.push(line);
+        });
+        r.sentence?.forEach((s, i) => {
+            const source = stripHtml(s.source);
+            const target = stripHtml(s.target);
+            if (source) parts.push(`${i + 1}. ${source}`);
+            if (target) parts.push(`   ${target}`);
+        });
+        return parts.join('\n');
+    };
+
+    const handleSpeak = () => speakText(result, targetLanguage);
 
     const [boundRef, bounds] = useMeasure({ scroll: true });
     const springs = useSpring({
@@ -588,6 +708,22 @@ export default function TargetArea(props) {
                                                 <span className={`text-[${appFontSize - 2}px] mr-[12px]`}>
                                                     {index + 1}.
                                                 </span>
+                                                {sentence['source'] &&
+                                                    sentence['source'].replace(/<[^>]*>/g, '').trim() !== '' && (
+                                                        <HiOutlineVolumeUp
+                                                            className='text-[14px] inline-block mr-[6px] cursor-pointer text-default-500'
+                                                            onClick={() => {
+                                                                speakText(
+                                                                    sentence['source'].replace(/<[^>]*>/g, ''),
+                                                                    dictSourceLanguage
+                                                                ).catch((e) => {
+                                                                    toast.error(e.toString(), {
+                                                                        style: toastStyle,
+                                                                    });
+                                                                });
+                                                            }}
+                                                        />
+                                                    )}
                                                 <>
                                                     {sentence['source'] && (
                                                         <span
@@ -638,9 +774,13 @@ export default function TargetArea(props) {
                                     isIconOnly
                                     variant='light'
                                     size='sm'
-                                    isDisabled={typeof result !== 'string' || result === ''}
+                                    isDisabled={!result}
                                     onPress={() => {
-                                        handleSpeak().catch((e) => {
+                                        const p =
+                                            typeof result === 'string'
+                                                ? handleSpeak()
+                                                : speakText(sourceText, dictSourceLanguage);
+                                        p.catch((e) => {
                                             toast.error(e.toString(), { style: toastStyle });
                                         });
                                     }}
@@ -654,14 +794,40 @@ export default function TargetArea(props) {
                                     isIconOnly
                                     variant='light'
                                     size='sm'
-                                    isDisabled={typeof result !== 'string' || result === ''}
+                                    isDisabled={!result}
                                     onPress={() => {
-                                        writeText(result);
+                                        writeText(
+                                            typeof result === 'string'
+                                                ? result
+                                                : flattenDictionary(result)
+                                        );
                                     }}
                                 >
                                     <MdContentCopy className='text-[16px]' />
                                 </Button>
                             </Tooltip>
+                            {/* replace original selection button (first service only, disabled in input mode) */}
+                            {index === 0 && (
+                                <Tooltip content={t('translate.replace')}>
+                                    <Button
+                                        isIconOnly
+                                        variant='light'
+                                        size='sm'
+                                        isDisabled={
+                                            typeof result !== 'string' ||
+                                            result === '' ||
+                                            windowType === '[INPUT_TRANSLATE]'
+                                        }
+                                        onPress={() => {
+                                            handleManualReplace().catch((e) => {
+                                                toast.error(e.toString(), { style: toastStyle });
+                                            });
+                                        }}
+                                    >
+                                        <MdFindReplace className='text-[16px]' />
+                                    </Button>
+                                </Tooltip>
+                            )}
                             {/* translate back button */}
                             <Tooltip content={t('translate.translate_back')}>
                                 <Button
