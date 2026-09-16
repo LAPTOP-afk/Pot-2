@@ -8,7 +8,7 @@
     },
     "package": {
         "productName": "Pot2",
-        "version": "3.0.7"
+        "version": "0.1.0"
     },
     "tauri": {
         "allowlist": {

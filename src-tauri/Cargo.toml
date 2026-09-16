@@ -1,6 +1,6 @@
 [package]
 name = "pot2"
-version = "0.0.0"
+version = "0.1.0"
 description = "Pot2 App"
 authors = ["pot-app"]
 license = "GPL-3.0-only"

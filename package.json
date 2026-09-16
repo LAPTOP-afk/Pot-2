@@ -1,7 +1,7 @@
 {
     "name": "pot2",
     "private": true,
-    "version": "3.0.7",
+    "version": "0.1.0",
     "type": "module",
     "scripts": {
         "dev": "vite",
