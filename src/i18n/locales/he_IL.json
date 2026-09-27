@@ -224,6 +224,30 @@
                 "success_notify": "Notify after successful replacement",
                 "least_one": "Keep at least one action",
                 "title": "Selection Assistant"
+            },
+            "appearance": {
+                "label": "מראה",
+                "title": "מראה",
+                "display_mode": "מצב תצוגה",
+                "accent_color": "צבע הדגשה",
+                "animations": "אנימציית מעבר",
+                "custom_color": "צבע מותאם",
+                "invalid_hex": "צבע הקסה לא תקין",
+                "reset": "איפוס",
+                "preview": "תצוגה מקדימה",
+                "follow": "עקוב אחר הנוכחי",
+                "presets": {
+                    "default": "ברירת מחדל",
+                    "cyan": "ציאן",
+                    "green": "ירוק",
+                    "orange": "כתום",
+                    "red": "אדום",
+                    "pink": "ורוד",
+                    "purple": "סגול",
+                    "indigo": "אינדיגו",
+                    "sky": "תכלת",
+                    "graphite": "גרפיט"
+                }
             }
         },
         "updater": {
@@ -448,7 +472,15 @@
             "toggle_view": "Toggle translation/original",
             "copy_all": "Copy all translations",
             "close": "Close",
-            "translate_failed": "התרגום נכשל"
+            "translate_failed": "התרגום נכשל",
+            "source_lang": "שפת מקור",
+            "target_lang": "שפת יעד",
+            "swap": "החלפת שפות",
+            "compare": "השוואה",
+            "retranslate": "תרגם מחדש",
+            "light_block": "תיבות בהירות",
+            "dark_block": "תיבות כהות",
+            "drag_toolbar": "גרור את סרגל הכלים"
         }
     }
 }

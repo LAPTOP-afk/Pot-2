@@ -276,6 +276,30 @@
                 "success_notify": "대체 성공 시 알림",
                 "least_one": "동작은 최소 하나 이상 유지하세요",
                 "title": "선택 도우미"
+            },
+            "appearance": {
+                "label": "외관",
+                "title": "외관",
+                "display_mode": "표시 모드",
+                "accent_color": "테마 색상",
+                "animations": "전환 애니메이션",
+                "custom_color": "사용자 지정 색상",
+                "invalid_hex": "잘못된 16진수 색상입니다",
+                "reset": "기본값 복원",
+                "preview": "미리보기",
+                "follow": "현재 테마 따름",
+                "presets": {
+                    "default": "기본값",
+                    "cyan": "청록색",
+                    "green": "초록색",
+                    "orange": "주황색",
+                    "red": "빨간색",
+                    "pink": "분홍색",
+                    "purple": "보라색",
+                    "indigo": "남색",
+                    "sky": "하늘색",
+                    "graphite": "흑연색"
+                }
             }
         },
         "updater": {
@@ -306,7 +330,15 @@
             "toggle_view": "번역/원본 전환",
             "copy_all": "모든 번역 복사",
             "close": "닫기",
-            "translate_failed": "번역 실패"
+            "translate_failed": "번역 실패",
+            "source_lang": "원본 언어",
+            "target_lang": "대상 언어",
+            "swap": "언어 교환",
+            "compare": "대조",
+            "retranslate": "재번역",
+            "light_block": "밝은 블록",
+            "dark_block": "어두운 블록",
+            "drag_toolbar": "도구 모음 끌기"
         }
     }
 }

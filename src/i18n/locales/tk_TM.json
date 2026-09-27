@@ -61,6 +61,30 @@
             "recognize": {
                 "silent_auto_copy": "Silent OCR: auto copy result",
                 "silent_notify": "Silent OCR: send notification"
+            },
+            "appearance": {
+                "label": "Appearance",
+                "title": "Appearance",
+                "display_mode": "Display Mode",
+                "accent_color": "Accent Color",
+                "animations": "Color transition animation",
+                "custom_color": "Custom color",
+                "invalid_hex": "Invalid hex color",
+                "reset": "Reset",
+                "preview": "Preview",
+                "follow": "Follow current",
+                "presets": {
+                    "default": "Default",
+                    "cyan": "Cyan",
+                    "green": "Green",
+                    "orange": "Orange",
+                    "red": "Red",
+                    "pink": "Pink",
+                    "purple": "Purple",
+                    "indigo": "Indigo",
+                    "sky": "Sky Blue",
+                    "graphite": "Graphite"
+                }
             }
         },
         "languages": {
@@ -123,7 +147,15 @@
             "toggle_view": "Toggle translation/original",
             "copy_all": "Copy all translations",
             "close": "Close",
-            "translate_failed": "Terjime edip bolmady"
+            "translate_failed": "Terjime edip bolmady",
+            "source_lang": "Source language",
+            "target_lang": "Target language",
+            "swap": "Swap languages",
+            "compare": "Compare",
+            "retranslate": "Retranslate",
+            "light_block": "Light blocks",
+            "dark_block": "Dark blocks",
+            "drag_toolbar": "Drag toolbar"
         }
     }
 }

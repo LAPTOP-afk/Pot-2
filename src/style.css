@@ -25,3 +25,17 @@ html {
 *::-webkit-scrollbar-thumb:hover {
     background: #c0c1c550;
 }
+
+/* 主题色切换动画：仅在用户切换主色后的 320ms 内生效（见 accent_theme.js），
+   只过渡颜色属性，不影响布局，首帧绘制不触发 */
+html[data-color-anim='true'] *,
+html[data-color-anim='true'] *::before,
+html[data-color-anim='true'] *::after {
+    transition:
+        background-color 0.25s ease,
+        border-color 0.25s ease,
+        color 0.2s ease,
+        fill 0.2s ease,
+        stroke 0.2s ease,
+        box-shadow 0.25s ease !important;
+}

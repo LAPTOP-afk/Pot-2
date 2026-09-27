@@ -230,6 +230,30 @@
                 "success_notify": "Nach erfolgreichem Ersetzen benachrichtigen",
                 "least_one": "Mindestens eine Aktion behalten",
                 "title": "Auswahl-Assistent"
+            },
+            "appearance": {
+                "label": "Erscheinungsbild",
+                "title": "Erscheinungsbild",
+                "display_mode": "Anzeigemodus",
+                "accent_color": "Akzentfarbe",
+                "animations": "Übergangsanimation",
+                "custom_color": "Eigene Farbe",
+                "invalid_hex": "Ungültiger Hex-Farbwert",
+                "reset": "Zurücksetzen",
+                "preview": "Vorschau",
+                "follow": "Aktuellem folgen",
+                "presets": {
+                    "default": "Standard",
+                    "cyan": "Cyan",
+                    "green": "Grün",
+                    "orange": "Orange",
+                    "red": "Rot",
+                    "pink": "Pink",
+                    "purple": "Lila",
+                    "indigo": "Indigo",
+                    "sky": "Himmelblau",
+                    "graphite": "Graphit"
+                }
             }
         },
         "updater": {
@@ -484,7 +508,15 @@
             "toggle_view": "Übersetzung/Original umschalten",
             "copy_all": "Alle Übersetzungen kopieren",
             "close": "Schließen",
-            "translate_failed": "Übersetzung fehlgeschlagen"
+            "translate_failed": "Übersetzung fehlgeschlagen",
+            "source_lang": "Quellsprache",
+            "target_lang": "Zielsprache",
+            "swap": "Sprachen tauschen",
+            "compare": "Vergleich",
+            "retranslate": "Neu übersetzen",
+            "light_block": "Helle Blöcke",
+            "dark_block": "Dunkle Blöcke",
+            "drag_toolbar": "Symbolleiste ziehen"
         }
     }
 }

@@ -87,6 +87,30 @@
                 "success_notify": "置換成功時に通知する",
                 "least_one": "アクションは1つ以上残してください",
                 "title": "選択アシスタント"
+            },
+            "appearance": {
+                "label": "外観",
+                "title": "外観",
+                "display_mode": "表示モード",
+                "accent_color": "テーマカラー",
+                "animations": "切り替えアニメーション",
+                "custom_color": "カスタムカラー",
+                "invalid_hex": "無効な16進カラーです",
+                "reset": "デフォルトに戻す",
+                "preview": "プレビュー",
+                "follow": "現在のテーマに従う",
+                "presets": {
+                    "default": "デフォルト",
+                    "cyan": "シアン",
+                    "green": "グリーン",
+                    "orange": "オレンジ",
+                    "red": "レッド",
+                    "pink": "ピンク",
+                    "purple": "パープル",
+                    "indigo": "インディゴ",
+                    "sky": "スカイブルー",
+                    "graphite": "グラファイト"
+                }
             }
         },
         "languages": {
@@ -192,7 +216,15 @@
             "toggle_view": "訳文/原文を切替",
             "copy_all": "すべての訳文をコピー",
             "close": "閉じる",
-            "translate_failed": "翻訳に失敗しました"
+            "translate_failed": "翻訳に失敗しました",
+            "source_lang": "原文の言語",
+            "target_lang": "訳文の言語",
+            "swap": "言語を入れ替え",
+            "compare": "対照",
+            "retranslate": "再翻訳",
+            "light_block": "ライトブロック",
+            "dark_block": "ダークブロック",
+            "drag_toolbar": "ツールバーをドラッグ"
         }
     }
 }

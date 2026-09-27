@@ -231,6 +231,30 @@
                 "success_notify": "替换成功后发送通知",
                 "least_one": "至少保留一个动作",
                 "title": "划词助手"
+            },
+            "appearance": {
+                "label": "外观",
+                "title": "外观",
+                "display_mode": "显示模式",
+                "accent_color": "主题色",
+                "animations": "切换动画",
+                "custom_color": "自定义颜色",
+                "invalid_hex": "无效的十六进制颜色值",
+                "reset": "恢复默认",
+                "preview": "实时预览",
+                "follow": "跟随当前",
+                "presets": {
+                    "default": "默认",
+                    "cyan": "青色",
+                    "green": "绿色",
+                    "orange": "橙色",
+                    "red": "红色",
+                    "pink": "品红",
+                    "purple": "紫色",
+                    "indigo": "靛蓝",
+                    "sky": "天蓝",
+                    "graphite": "石墨"
+                }
             }
         },
         "updater": {
@@ -503,7 +527,15 @@
             "toggle_view": "切换译文/原图",
             "copy_all": "复制全部译文",
             "close": "关闭",
-            "translate_failed": "翻译失败"
+            "translate_failed": "翻译失败",
+            "source_lang": "源语言",
+            "target_lang": "目标语言",
+            "swap": "交换语言",
+            "compare": "对照",
+            "retranslate": "重新翻译",
+            "light_block": "浅色块",
+            "dark_block": "深色块",
+            "drag_toolbar": "拖动工具栏"
         }
     }
 }

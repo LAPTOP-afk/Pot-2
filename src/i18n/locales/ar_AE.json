@@ -231,6 +231,30 @@
                 "success_notify": "Notify after successful replacement",
                 "least_one": "Keep at least one action",
                 "title": "Selection Assistant"
+            },
+            "appearance": {
+                "label": "المظهر",
+                "title": "المظهر",
+                "display_mode": "وضع العرض",
+                "accent_color": "اللون المميز",
+                "animations": "تأثير الانتقال",
+                "custom_color": "لون مخصص",
+                "invalid_hex": "لون سداسي عشري غير صالح",
+                "reset": "إعادة تعيين",
+                "preview": "معاينة",
+                "follow": "اتباع الحالي",
+                "presets": {
+                    "default": "افتراضي",
+                    "cyan": "سماوي",
+                    "green": "أخضر",
+                    "orange": "برتقالي",
+                    "red": "أحمر",
+                    "pink": "وردي",
+                    "purple": "بنفسجي",
+                    "indigo": "نيلي",
+                    "sky": "أزرق سماوي",
+                    "graphite": "جرافيت"
+                }
             }
         },
         "updater": {
@@ -503,7 +527,15 @@
             "toggle_view": "Toggle translation/original",
             "copy_all": "Copy all translations",
             "close": "Close",
-            "translate_failed": "فشل الترجمة"
+            "translate_failed": "فشل الترجمة",
+            "source_lang": "اللغة المصدر",
+            "target_lang": "اللغة الهدف",
+            "swap": "تبديل اللغات",
+            "compare": "المقارنة",
+            "retranslate": "إعادة الترجمة",
+            "light_block": "كتل فاتحة",
+            "dark_block": "كتل داكنة",
+            "drag_toolbar": "اسحب شريط الأدوات"
         }
     }
 }

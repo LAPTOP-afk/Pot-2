@@ -47,13 +47,45 @@
             "recognize": {
                 "silent_auto_copy": "Silent OCR: auto copy result",
                 "silent_notify": "Silent OCR: send notification"
+            },
+            "appearance": {
+                "label": "Görünüm",
+                "title": "Görünüm",
+                "display_mode": "Görüntüleme modu",
+                "accent_color": "Vurgu rengi",
+                "animations": "Geçiş animasyonu",
+                "custom_color": "Özel renk",
+                "invalid_hex": "Geçersiz hex rengi",
+                "reset": "Sıfırla",
+                "preview": "Önizleme",
+                "follow": "Geçerliyi izle",
+                "presets": {
+                    "default": "Varsayılan",
+                    "cyan": "Camgöbeği",
+                    "green": "Yeşil",
+                    "orange": "Turuncu",
+                    "red": "Kırmızı",
+                    "pink": "Pembe",
+                    "purple": "Mor",
+                    "indigo": "Çivit",
+                    "sky": "Gök mavisi",
+                    "graphite": "Grafit"
+                }
             }
         },
         "overlay": {
             "toggle_view": "Toggle translation/original",
             "copy_all": "Copy all translations",
             "close": "Close",
-            "translate_failed": "Çeviri başarısız"
+            "translate_failed": "Çeviri başarısız",
+            "source_lang": "Kaynak dil",
+            "target_lang": "Hedef dil",
+            "swap": "Dilleri değiştir",
+            "compare": "Karşılaştır",
+            "retranslate": "Yeniden çevir",
+            "light_block": "Açık bloklar",
+            "dark_block": "Koyu bloklar",
+            "drag_toolbar": "Araç çubuğunu sürükle"
         }
     }
 }

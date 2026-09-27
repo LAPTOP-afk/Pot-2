@@ -14,7 +14,6 @@ import 'flag-icons/css/flag-icons.min.css';
 import { Input } from '@nextui-org/react';
 import { Card } from '@nextui-org/react';
 import { invoke } from '@tauri-apps/api';
-import { useTheme } from 'next-themes';
 
 import { useConfig } from '../../../../hooks/useConfig';
 import { LanguageFlag } from '../../../../utils/language';
@@ -29,7 +28,6 @@ export default function General() {
     const [checkUpdate, setCheckUpdate] = useConfig('check_update', true);
     const [serverPort, setServerPort] = useConfig('server_port', 60828);
     const [appLanguage, setAppLanguage] = useConfig('app_language', 'en');
-    const [appTheme, setAppTheme] = useConfig('app_theme', 'system');
     const [appFont, setAppFont] = useConfig('app_font', 'default');
     const [appFallbackFont, setAppFallbackFont] = useConfig('app_fallback_font', 'default');
     const [appFontSize, setAppFontSize] = useConfig('app_font_size', 16);
@@ -43,7 +41,6 @@ export default function General() {
     const [proxyPassword, setProxyPassword] = useConfig('proxy_password', '');
     const [noProxy, setNoProxy] = useConfig('no_proxy', 'localhost,127.0.0.1');
     const { t, i18n } = useTranslation();
-    const { setTheme } = useTheme();
     const toastStyle = useToastStyle();
 
     const languageName = {
@@ -284,44 +281,6 @@ export default function General() {
                                     >
                                         עִבְרִית
                                     </DropdownItem>
-                                </DropdownMenu>
-                            </Dropdown>
-                        )}
-                    </div>
-                    <div className='config-item'>
-                        <h3 className='my-auto'>{t('config.general.app_theme')}</h3>
-                        {appTheme !== null && (
-                            <Dropdown>
-                                <DropdownTrigger>
-                                    <Button variant='bordered'>{t(`config.general.theme.${appTheme}`)}</Button>
-                                </DropdownTrigger>
-                                <DropdownMenu
-                                    aria-label='app theme'
-                                    onAction={(key) => {
-                                        setAppTheme(key);
-                                        if (key !== 'system') {
-                                            setTheme(key);
-                                        } else {
-                                            if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-                                                setTheme('dark');
-                                            } else {
-                                                setTheme('light');
-                                            }
-                                            window
-                                                .matchMedia('(prefers-color-scheme: dark)')
-                                                .addEventListener('change', (e) => {
-                                                    if (e.matches) {
-                                                        setTheme('dark');
-                                                    } else {
-                                                        setTheme('light');
-                                                    }
-                                                });
-                                        }
-                                    }}
-                                >
-                                    <DropdownItem key='system'>{t('config.general.theme.system')}</DropdownItem>
-                                    <DropdownItem key='light'>{t('config.general.theme.light')}</DropdownItem>
-                                    <DropdownItem key='dark'>{t('config.general.theme.dark')}</DropdownItem>
                                 </DropdownMenu>
                             </Dropdown>
                         )}

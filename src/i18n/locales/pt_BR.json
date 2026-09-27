@@ -231,6 +231,30 @@
                 "success_notify": "Notificar após substituição bem-sucedida",
                 "least_one": "Mantenha pelo menos uma ação",
                 "title": "Assistente de seleção"
+            },
+            "appearance": {
+                "label": "Aparência",
+                "title": "Aparência",
+                "display_mode": "Modo de exibição",
+                "accent_color": "Cor de destaque",
+                "animations": "Animação de transição",
+                "custom_color": "Cor personalizada",
+                "invalid_hex": "Cor hexadecimal inválida",
+                "reset": "Redefinir",
+                "preview": "Pré-visualização",
+                "follow": "Seguir atual",
+                "presets": {
+                    "default": "Padrão",
+                    "cyan": "Ciano",
+                    "green": "Verde",
+                    "orange": "Laranja",
+                    "red": "Vermelho",
+                    "pink": "Rosa",
+                    "purple": "Roxo",
+                    "indigo": "Índigo",
+                    "sky": "Azul-celeste",
+                    "graphite": "Grafite"
+                }
             }
         },
         "updater": {
@@ -503,7 +527,15 @@
             "toggle_view": "Alternar tradução/original",
             "copy_all": "Copiar todas as traduções",
             "close": "Fechar",
-            "translate_failed": "Falha na tradução"
+            "translate_failed": "Falha na tradução",
+            "source_lang": "Idioma de origem",
+            "target_lang": "Idioma de destino",
+            "swap": "Trocar idiomas",
+            "compare": "Comparar",
+            "retranslate": "Traduzir novamente",
+            "light_block": "Blocos claros",
+            "dark_block": "Blocos escuros",
+            "drag_toolbar": "Arrastar barra de ferramentas"
         }
     }
 }

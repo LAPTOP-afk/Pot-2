@@ -130,6 +130,30 @@
             "recognize": {
                 "silent_auto_copy": "Silent OCR: auto copy result",
                 "silent_notify": "Silent OCR: send notification"
+            },
+            "appearance": {
+                "label": "ظاهر",
+                "title": "ظاهر",
+                "display_mode": "حالت نمایش",
+                "accent_color": "رنگ تأکید",
+                "animations": "انیمیشن گذار",
+                "custom_color": "رنگ سفارشی",
+                "invalid_hex": "رنگ هگزادسیمال نامعتبر است",
+                "reset": "بازنشانی",
+                "preview": "پیش‌نمایش",
+                "follow": "پیروی از فعلی",
+                "presets": {
+                    "default": "پیش‌فرض",
+                    "cyan": "فیروزه‌ای",
+                    "green": "سبز",
+                    "orange": "نارنجی",
+                    "red": "قرمز",
+                    "pink": "صورتی",
+                    "purple": "بنفش",
+                    "indigo": "نیلی",
+                    "sky": "آبی آسمانی",
+                    "graphite": "گرافیتی"
+                }
             }
         },
         "translate": {
@@ -158,7 +182,15 @@
             "toggle_view": "Toggle translation/original",
             "copy_all": "Copy all translations",
             "close": "Close",
-            "translate_failed": "ترجمه ناموفق بود"
+            "translate_failed": "ترجمه ناموفق بود",
+            "source_lang": "زبان مبدأ",
+            "target_lang": "زبان مقصد",
+            "swap": "تعویض زبان‌ها",
+            "compare": "مقایسه",
+            "retranslate": "ترجمه مجدد",
+            "light_block": "بلوک‌های روشن",
+            "dark_block": "بلوک‌های تیره",
+            "drag_toolbar": "کشیدن نوار ابزار"
         }
     }
 }

@@ -47,14 +47,30 @@ export default function Screenshot() {
                 }}
             />
             <div
-                className={`fixed bg-[#2080f020] border border-solid border-sky-500 ${!isMoved && 'hidden'}`}
+                className={`fixed border border-solid border-[#ff6a3d] bg-[#ff6a3d]/10 ${!isMoved && 'hidden'}`}
                 style={{
                     top: Math.min(mouseDownY, mouseMoveY),
                     left: Math.min(mouseDownX, mouseMoveX),
                     bottom: screen.height - Math.max(mouseDownY, mouseMoveY),
                     right: screen.width - Math.max(mouseDownX, mouseMoveX),
                 }}
-            />
+            >
+                {[
+                    'left-[-4px] top-[-4px]',
+                    'left-1/2 top-[-4px] -translate-x-1/2',
+                    'right-[-4px] top-[-4px]',
+                    'right-[-4px] top-1/2 -translate-y-1/2',
+                    'right-[-4px] bottom-[-4px]',
+                    'left-1/2 bottom-[-4px] -translate-x-1/2',
+                    'left-[-4px] bottom-[-4px]',
+                    'left-[-4px] top-1/2 -translate-y-1/2',
+                ].map((pos) => (
+                    <span
+                        key={pos}
+                        className={`pointer-events-none absolute h-[7px] w-[7px] rounded-full border-[1.5px] border-[#ff6a3d] bg-white ${pos}`}
+                    />
+                ))}
+            </div>
             <div
                 className='fixed top-0 left-0 bottom-0 right-0 cursor-crosshair select-none'
                 onMouseDown={(e) => {

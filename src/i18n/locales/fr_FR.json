@@ -457,6 +457,30 @@
                 "success_notify": "Notifier après un remplacement réussi",
                 "least_one": "Conservez au moins une action",
                 "title": "Assistant de sélection"
+            },
+            "appearance": {
+                "label": "Apparence",
+                "title": "Apparence",
+                "display_mode": "Mode d'affichage",
+                "accent_color": "Couleur d'accentuation",
+                "animations": "Animation de transition",
+                "custom_color": "Couleur personnalisée",
+                "invalid_hex": "Couleur hexadécimale invalide",
+                "reset": "Réinitialiser",
+                "preview": "Aperçu",
+                "follow": "Suivre le thème actuel",
+                "presets": {
+                    "default": "Par défaut",
+                    "cyan": "Cyan",
+                    "green": "Vert",
+                    "orange": "Orange",
+                    "red": "Rouge",
+                    "pink": "Rose",
+                    "purple": "Violet",
+                    "indigo": "Indigo",
+                    "sky": "Bleu ciel",
+                    "graphite": "Graphite"
+                }
             }
         },
         "translate": {
@@ -503,7 +527,15 @@
             "toggle_view": "Basculer traduction/original",
             "copy_all": "Copier toutes les traductions",
             "close": "Fermer",
-            "translate_failed": "Échec de la traduction"
+            "translate_failed": "Échec de la traduction",
+            "source_lang": "Langue source",
+            "target_lang": "Langue cible",
+            "swap": "Inverser les langues",
+            "compare": "Comparaison",
+            "retranslate": "Retraduire",
+            "light_block": "Blocs clairs",
+            "dark_block": "Blocs sombres",
+            "drag_toolbar": "Faire glisser la barre d’outils"
         }
     }
 }

@@ -231,6 +231,30 @@
                 "success_notify": "取代成功後發送通知",
                 "least_one": "至少保留一個動作",
                 "title": "劃詞助手"
+            },
+            "appearance": {
+                "label": "外觀",
+                "title": "外觀",
+                "display_mode": "顯示模式",
+                "accent_color": "主題色",
+                "animations": "切換動畫",
+                "custom_color": "自訂顏色",
+                "invalid_hex": "無效的十六進制顏色值",
+                "reset": "恢復預設",
+                "preview": "即時預覽",
+                "follow": "跟隨目前",
+                "presets": {
+                    "default": "預設",
+                    "cyan": "青色",
+                    "green": "綠色",
+                    "orange": "橙色",
+                    "red": "紅色",
+                    "pink": "品紅",
+                    "purple": "紫色",
+                    "indigo": "靛藍",
+                    "sky": "天藍",
+                    "graphite": "石墨"
+                }
             }
         },
         "updater": {
@@ -500,7 +524,15 @@
             "toggle_view": "切換譯文/原圖",
             "copy_all": "複製全部譯文",
             "close": "關閉",
-            "translate_failed": "翻譯失敗"
+            "translate_failed": "翻譯失敗",
+            "source_lang": "來源語言",
+            "target_lang": "目標語言",
+            "swap": "交換語言",
+            "compare": "對照",
+            "retranslate": "重新翻譯",
+            "light_block": "淺色塊",
+            "dark_block": "深色塊",
+            "drag_toolbar": "拖動工具列"
         }
     }
 }

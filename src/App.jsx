@@ -2,7 +2,7 @@ import { appWindow } from '@tauri-apps/api/window';
 import { BrowserRouter } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { warn } from 'tauri-plugin-log-api';
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useTheme } from 'next-themes';
 
 import { invoke } from '@tauri-apps/api/tauri';
@@ -13,6 +13,7 @@ import Overlay from './window/Overlay';
 import Recognize from './window/Recognize';
 import Updater from './window/Updater';
 import { store } from './utils/store';
+import { applyAccent, pulseColorTransition } from './utils/accent_theme';
 import Config from './window/Config';
 import { useConfig } from './hooks';
 import './style.css';
@@ -35,8 +36,11 @@ export default function App() {
     const [appFont] = useConfig('app_font', 'default');
     const [appFallbackFont] = useConfig('app_fallback_font', 'default');
     const [appFontSize] = useConfig('app_font_size', 16);
+    const [accentColor] = useConfig('accent_color', '');
+    const [accentAnimations] = useConfig('accent_animations', true);
     const { setTheme } = useTheme();
     const { i18n } = useTranslation();
+    const firstAccentRef = useRef(true);
 
     useEffect(() => {
         store.load();
@@ -116,6 +120,16 @@ export default function App() {
             document.documentElement.style.fontSize = `${appFontSize}px`;
         }
     }, [appFont, appFallbackFont, appFontSize]);
+
+    // 主题色：首帧直接应用（无过渡），后续用户切换时播放颜色过渡
+    useEffect(() => {
+        if (accentColor === null) return;
+        const applied = applyAccent(accentColor);
+        if (!firstAccentRef.current && accentAnimations && applied) {
+            pulseColorTransition();
+        }
+        firstAccentRef.current = false;
+    }, [accentColor, accentAnimations]);
 
     return <BrowserRouter>{windowMap[appWindow.label]}</BrowserRouter>;
 }

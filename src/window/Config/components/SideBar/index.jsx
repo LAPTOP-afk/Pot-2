@@ -5,6 +5,7 @@ import { AiFillAppstore } from 'react-icons/ai';
 import { useTranslation } from 'react-i18next';
 import { PiTextboxFill } from 'react-icons/pi';
 import { MdKeyboardAlt } from 'react-icons/md';
+import { MdPalette } from 'react-icons/md';
 import { MdExtension } from 'react-icons/md';
 import { MdTouchApp } from 'react-icons/md';
 import { AiFillCloud } from 'react-icons/ai';
@@ -34,6 +35,18 @@ export default function SideBar() {
                 startContent={<AiFillAppstore className='text-[24px]' />}
             >
                 <div className='w-full'>{t('config.general.label')}</div>
+            </Button>
+            <Button
+                fullWidth
+                size='lg'
+                variant={setStyle('/appearance')}
+                className='mb-[5px]'
+                onPress={() => {
+                    navigate('/appearance');
+                }}
+                startContent={<MdPalette className='text-[24px]' />}
+            >
+                <div className='w-full'>{t('config.appearance.label')}</div>
             </Button>
             <Button
                 fullWidth
